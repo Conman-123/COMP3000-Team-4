@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient@2.3.1/build/fhir-client.min.js"
+        integrity="sha256-n7vfOuBrmsVxTrsfFjBXRi14WSsPzxjd/MqaFcvu85U=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <script>
+        FHIR.oauth2.authorize({
+            // client_id you get when registering with the auth server or EHR. Not required for open servers
+            "client_id": "<enter client id here>",
+            "scope": "patient/*.read"
+        });
+    </script>
+</body>
+</html>
