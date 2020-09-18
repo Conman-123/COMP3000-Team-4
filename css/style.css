@@ -1,3 +1,135 @@
 #body {
 	margin: 20%;
 }
+
+* {
+    font-family: Montserrat;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+/*Score Overview*/
+.score_overview {
+    padding-bottom: 50px;
+}	
+
+.block1, .block2, .block3, .block4 {
+    width: 170px;
+    height: 90px;
+}
+
+.score_overview h3 {
+    text-align: center;
+}
+
+#overall-score-container {
+    height: 60px;
+    width: 90px;
+    margin-top: 13px;
+    font-size: 20px;
+}
+
+
+
+/*Score Breakdowns*/
+.score_breakdowns {
+    margin-left: 60px;
+}
+
+.score_breakdowns h2 {
+    font-size: 25px;
+    padding-top: 35px;
+}
+
+.breakdown-block1, .breakdown-block2, .breakdown-block3, .breakdown-block4 {
+    width: 75px;
+    height: 50px;
+}
+
+.score_breakdowns .flex-row {
+    margin-bottom: 20px;
+}
+
+#breakdown-score-container, #breakdown2-score-container, #breakdown3-score-container {
+    height: 30px;
+    width: 40px;
+    margin-top: 10px;
+}
+
+
+
+/*Data Analysis*/
+.data_container {
+    background-color: gray;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    width: 400px;
+}
+
+.data_container h1 {
+    padding-top: 5px; 
+    padding-left: 10px;
+}
+
+.data_container p {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.data_container h1, .data_container p {
+    color: white;
+}
+
+
+
+/*Compare Against Previous Scores*/
+.previous_scores {
+    background-color: gray;
+}
+
+.previous_scores h2 {
+    text-align: center;
+}
+
+
+
+/*Coloured Blocks Representing Scores*/
+.block1, .breakdown-block1 {
+    background-color: #99C63E;
+}
+
+.block2, .breakdown-block2 {
+    background-color: #F6DD0B;
+}
+
+.block3, .breakdown-block3 {
+    background-color: #E87000;
+}
+
+.block4, .breakdown-block4 {
+    background-color: #C42A26;
+}
+
+
+
+/*Score Container*/
+#overall-score-container, #breakdown-score-container, #breakdown2-score-container, #breakdown3-score-container {
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+    position: absolute;
+    float: right;
+}
