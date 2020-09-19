@@ -6,39 +6,47 @@
     font-family: Montserrat;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 10px;
-    padding: 10px;
-}
-
-h1 {
+.score-overview-container h1, .next-steps-container h1 {
     font-size: 30px;
 }
 
-h3 {
-    font-size: 20px;
+.score_breakdowns h2, .normative-data h2, .previous-score-container h2 {
+    font-size: 25px;
 }
+
+.normative-data h2, .previous-score-container h2 {
+    text-align: center;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+#h3 {
+    font-size: 1em;
+    text-align: center;
+}
+
+
 
 /*Score Overview*/
-.score_overview {
-    padding-bottom: 50px;
-}	
-
-.block1, .block2, .block3, .block4 {
-    width: 170px;
-    height: 90px;
+.overview-container {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.score_overview h3 {
-    text-align: center;
+#good-block, #mild-block, #moderate-block, #severe-block {
+    height: 80px;
+}
+
+#score-h1 {
+    margin-left: 5px;
 }
 
 #overall-score-container {
     height: 60px;
     width: 90px;
-    margin-top: 13px;
+    margin-top: 10px;
     font-size: 20px;
 }
 
@@ -46,16 +54,19 @@ h3 {
 
 /*Score Breakdowns*/
 .score_breakdowns {
-    margin-left: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.score_breakdowns h3 {
+    font-size: 20px;
 }
 
 .score_breakdowns h2 {
-    font-size: 25px;
-    padding-top: 35px;
+    padding-top: 30px;
 }
 
-.breakdown-block1, .breakdown-block2, .breakdown-block3, .breakdown-block4 {
-    width: 75px;
+#good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #severe-block-breakdown {
     height: 50px;
 }
 
@@ -72,57 +83,82 @@ h3 {
 
 
 /*Data Analysis*/
-.data_container {
+.data-analysis {
     background-color: gray;
     border-radius: 10px;
     padding-bottom: 10px;
-    width: 400px;
+    margin-top: 20px;
 }
 
-.data_container h1 {
+.data-analysis h1 {
     padding-top: 5px; 
     padding-left: 10px;
 }
 
-.data_container p {
-    font-size: 20px;
-    margin-left: 20px;
+.data-analysis p {
+    font-size: 15px;
+    margin-left: 10px;
 }
 
-.data_container h1, .data_container p {
+.data-analysis h1, .data-analysis p {
     color: white;
 }
 
 
 
 /*Compare Against Previous Scores*/
-.previous_scores {
+.previous-score-container {
     background-color: gray;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: white;
 }
 
-.previous_scores h2 {
-    text-align: center;
+.previous-score-container h2 {
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+/*Score in comparison to normative data Section*/
+.normative-data {
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 
+/*Possible Next Steps Section*/
+.next-steps {
+    background-color: gray;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    padding-left: 10px;
+    color: white;
+}
+
+.next-steps h1 {
+    font-size: 30px;
+    padding-top: 5px; 
+    padding-left: 20px;
+}
 
 /*Coloured Blocks Representing Scores*/
-.block1, .breakdown-block1 {
+#good-block, #good-block-breakdown {
     background-color: #99C63E;
 }
 
-.block2, .breakdown-block2 {
+#mild-block, #mild-block-breakdown {
     background-color: #F6DD0B;
 }
 
-.block3, .breakdown-block3 {
+#moderate-block, #moderate-block-breakdown {
     background-color: #E87000;
 }
 
-.block4, .breakdown-block4 {
+#severe-block, #severe-block-breakdown {
     background-color: #C42A26;
 }
-
 
 
 /*Score Container*/
@@ -132,4 +168,11 @@ h3 {
     background-color: white;
     position: absolute;
     float: right;
+}
+
+@media only screen and (max-width: 400px) {
+    #blocks {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
