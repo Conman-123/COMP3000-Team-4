@@ -1,23 +1,23 @@
-function calcK10(answers) {
-	var sum = 0;
+const LOINC_FHIR_API_URL = "https://fhir.loinc.org";
+// The LOINC answers don't keep track of scores. Keep track of them here
+const LOINC_ANSWER_CODE_SCORES = {
+	"LA6297-1": 1,
+	"LA14732-4": 2,
+	"LA14733-2": 3,
+	"LA14734-0": 4,
+	"LA6154-4": 5
+}
 
-	for (var i = 0; i < answers.length; i++) {
-		sum += answers[i];
-	}
-
-	if (sum < 20) {
+function getk10WordScore(score) {
+	if (score < 20) {
 		return "Well";
-	}
-
-	if (sum < 25) {
+	} else if (score < 25) {
 		return "Mild mental disorder";
-	}
-
-	if (sum < 30) {
+	} else if (score < 30) {
 		return "Moderate mental disorder";
+	} else {
+		return "Severe mental disorder";	
 	}
-
-	return "Severe mental disorder";
 };
 
 function shortenName(name) {
@@ -79,22 +79,103 @@ function createQuestionaire(data) {
 	$("#questionaire").append('<input type="submit" formtarget="_self">');
 }
 
-$(document).ready(function() {
-	function display(data) {
-		console.log(data);
-		//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
-		createQuestionaire(data);
-		
+function displayQuestionnaireResponse(responseItems) {
+	// TODO: display the responses 
+}
+
+function setScoreScale(score) {
+	// Convert score to a percentage of max possible score
+	var scorePercent = ((score - 10) / 40) * 100;
+	// Move the score marker to this percentage along the total width of the score scale
+	// Also transform it left by this percentage of its own width so it never goes over the edges of the scale
+	//		(e.g. a score of 100% will transform the marker left 100% of its own width)
+	$("#overall-score-container").css({
+		"left": scorePercent + "%", 
+		"transform": "translateX(-" + scorePercent + "%)"
+	});
+	// Set the score value
+	$("#score-value").text(score);
+} 
+function setNormativeScoreScale(score) {
+	// Convert score to a percentage of max possible score (setting the minimum to zero rather than ten)
+	var scorePercent = ((score - 10) / 40) * 100;
+	// Move the score marker to this percentage along the total width of the score scale
+	// Also transform it left by this percentage of its own width so it never goes over the edges of the scale
+	//		(e.g. a score of 100% will transform the marker left 100% of its own width)
+	$("#breakdown-score-container").css({
+		"left": scorePercent + "%",
+		"transform": "translateX(-" + scorePercent + "%)"
+	});
+}
+
+function getAnswerScore(answer) {
+	if (answer[0]?.valueCoding?.system == "http://loinc.org") {
+		var score = LOINC_ANSWER_CODE_SCORES[answer[0].valueCoding.code];
+		if (score) {
+			return score;
+		} else {
+			console.error("Unknown code for answer: " + answer)
+		}
+	} else {
+		console.error("Unkonwn code system for answer: " + answer);
 	}
+	// If reached here, errored. Return -1 to signal error
+	return -1;
+}
+
+function handleQuestionnaireResponse(responseJson) {
+	var scores = [];
+	// Get scores for each answer
+	for (var i = 0; i < responseJson.item.length; i++) {
+		item = responseJson.item[i];
+		var score = getAnswerScore(item.answer);
+		if (score > 0) {
+			console.log("Score of " + score + " for question " + item.text);
+			scores.push(score);
+		}
+	}
+	
+	// Calculate total score
+	var totalScore = scores.reduce((total, value) => total + value);
+	console.log("Total score = " + totalScore + " '" + getk10WordScore(totalScore) + "'");
+	setScoreScale(totalScore);
+}
+
+function display(data) {
+	console.log(data);
+	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
+	createQuestionaire(data);
+}
+
+$(document).ready(function() {
 
 	$("#whatever").text("Loading...");
-
+	
+	// Set comparison data
+	setNormativeScoreScale(14);
+	
 	const client = new FHIR.client("http://hapi.fhir.org/baseR4");
 	data = client.request("Questionnaire/MDS3.0-SP-1.14")
 	.then(display)
 	.catch(display);
+	
+	// Handle This Questionnaire Response (for now just use example)
+	$.ajax({
+		url: "/testResources/k10-questionnaire-response.json",
+		type: "GET",
+		success: function(data) {
+			handleQuestionnaireResponse(data);
+		}
+	});
+	
+	// Handle Previous Scores
+	// TODO: implement and move this to a function
+	if (/* as past scores*/false) {
+	} else {
+		$("#previous-scores").text("This person has not completed any other K10 questionnaires.");		
+	}
 
-	$( "#questionaire").submit(function( event ) {
+	$("#questionaire").submit(function( event ) {
 		$.ajax({
 			type: "POST",
 			url: "serverUrl",

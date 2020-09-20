@@ -22,14 +22,26 @@ h3 {
     font-size: 2em;
 }
 
-#h3 {
+.h3 {
     font-size: 1em;
     text-align: center;
 }
 
+/*------------------- Scale Styles  -------------------*/
+.scale {
+    position: relative;
+}
+
+.scale-marker {
+    position: absolute;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+}
 
 
-/*Score Overview*/
+
+/*------------------- Score Overview  -------------------*/
 .overview-container {
     margin-left: 20px;
     margin-right: 20px;
@@ -52,7 +64,7 @@ h3 {
 
 
 
-/*Score Breakdowns*/
+/*------------------- Score Breakdowns -------------------*/
 .score_breakdowns {
     margin-left: 20px;
     margin-right: 20px;
@@ -82,7 +94,7 @@ h3 {
 
 
 
-/*Data Analysis*/
+/*------------------- Data Analysis -------------------*/
 .data-analysis {
     background-color: gray;
     border-radius: 10px;
@@ -106,7 +118,7 @@ h3 {
 
 
 
-/*Compare Against Previous Scores*/
+/*------------------- Compare Against Previous Scores -------------------*/
 .previous-score-container {
     background-color: gray;
     margin-top: 20px;
@@ -119,14 +131,14 @@ h3 {
     padding-left: 10px;
 }
 
-/*Score in comparison to normative data Section*/
+/*------------------- Score in comparison to normative data Section -------------------*/
 .normative-data {
     margin-top: 20px;
     margin-left: 10px;
 }
 
 
-/*Possible Next Steps Section*/
+/*------------------- Possible Next Steps Section -------------------*/
 .next-steps {
     background-color: gray;
     border-radius: 10px;
@@ -143,7 +155,7 @@ h3 {
     padding-left: 20px;
 }
 
-/*Coloured Blocks Representing Scores*/
+/*------------------- Coloured Blocks Representing Scores -------------------*/
 #good-block, #good-block-breakdown {
     background-color: #99C63E;
 }
@@ -161,14 +173,7 @@ h3 {
 }
 
 
-/*Score Container*/
-#overall-score-container, #breakdown-score-container, #breakdown2-score-container, #breakdown3-score-container {
-    border-radius: 50%;
-    text-align: center;
-    background-color: white;
-    position: absolute;
-    float: right;
-}
+/*------------------- Score Container -------------------*/
 
 @media only screen and (max-width: 400px) {
     #blocks {

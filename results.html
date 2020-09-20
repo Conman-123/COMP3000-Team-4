@@ -18,21 +18,21 @@
                     <div class="score-overview-container">
                         <h1 id="score-h1">Score Overview</h1>
                         <div class="overview-container">
-                            <div id="blocks" class="row">
+                            <div id="blocks" class="row scale">
                                 <div id="good-block" class="col-3"></div>
                                 <div id="mild-block" class="col-3"></div>
                                 <div id="moderate-block" class="col-3"></div>
                                 <div id="severe-block" class="col-3"></div>
-                                    <div id="overall-score-container">
+                                <div id="overall-score-container" class="scale-marker">
                                     <div>Score</div>
-                                    <div id="score-value"></div>
+                                <div id="score-value"></div>
                                 </div>
                             </div>
-                            <div id="blocks" class="row">
-                                <div id="h3" class="col-3">Good</div>
-                                <div id="h3" class="col-3">Mild</div>
-                                <div id="h3" class="col-3">Moderate</div>
-                                <div id="h3" class="col-3">Severe</div>
+                            <div id="blocks-labels" class="row">
+                                <div class="h3 col-3">Good</div>
+                                <div class="h3 col-3">Mild</div>
+                                <div class="h3 col-3">Moderate</div>
+                                <div class="h3 col-3">Severe</div>
                             </div>
                         </div>
                         <div class="row">
@@ -49,12 +49,12 @@
                                         <!--Score in comparison to normative data Section-->
                                         <div class="normative-data">
                                             <h2>Comparison Against Normative Data</h2>
-                                            <div id="blocks" class="row">
+                                            <div id="blocks-breakdown" class="row scale">
                                                 <div id="good-block-breakdown" class="col-3"></div>
                                                 <div id="mild-block-breakdown" class="col-3"></div>
                                                 <div id="moderate-block-breakdown" class="col-3"></div>
                                                 <div id="severe-block-breakdown" class="col-3"></div>
-                                                <div id="breakdown-score-container"></div>
+                                                <div id="breakdown-score-container" class="scale-marker"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -64,6 +64,7 @@
                                 <!--Compare Against Previous Scores Section-->
                                 <div class="previous-score-container">
                                     <h2>Compare Against Previous Scores</h2>
+                                    <div id="previous-scores"></div>
                                 </div>
                             </div>
                         </div>
