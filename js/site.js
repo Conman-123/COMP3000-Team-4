@@ -11,9 +11,9 @@ const LOINC_ANSWER_CODE_SCORES = {
 function getk10WordScore(score) {
 	if (score < 20) {
 		return "good";
-	} else if (score < 30) {
+	} else if (score < 25) {
 		return "mild";
-	} else if (score < 40) {
+	} else if (score < 30) {
 		return "moderate";
 	} else {
 		return "severe";	

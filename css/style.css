@@ -43,17 +43,8 @@ h3 {
 
 
 /*------------------- Score Overview  -------------------*/
-.overview-container {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 #good-block, #mild-block, #moderate-block, #severe-block {
     height: 80px;
-}
-
-#score-h1 {
-    margin-left: 5px;
 }
 
 #overall-score-container {
@@ -94,8 +85,6 @@ h3 {
 /*------------------- Score in comparison to normative data Section -------------------*/
 .normative-data {
     margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 #good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #severe-block-breakdown {
@@ -130,17 +119,29 @@ h3 {
 #good-block, #good-block-breakdown {
     background-color: #99C63E;
 }
+#good-block-container, #good-block-breakdown {
+    flex-grow: 10; /* Set size relative to other blocks (here using the range of score values as the ratio) */
+}
 
 #mild-block, #mild-block-breakdown {
     background-color: #F6DD0B;
+}
+#mild-block-container, #mild-block-breakdown {
+    flex-grow: 5;
 }
 
 #moderate-block, #moderate-block-breakdown {
     background-color: #E87000;
 }
+#moderate-block-container, #moderate-block-breakdown {
+    flex-grow: 5;
+}
 
 #severe-block, #severe-block-breakdown {
     background-color: #C42A26;
+}
+#severe-block-container, #severe-block-breakdown {
+    flex-grow: 21;
 }
 
 
