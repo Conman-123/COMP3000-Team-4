@@ -12,7 +12,7 @@ const LOINC_ANSWER_CODE_SCORES = {
 Chart.plugins.register({
 	beforeDraw: function (chartInstance, easing) {
 		var ctx = chartInstance.chart.ctx;
-		ctx.fillStyle = '#fff'; // Set background colour here
+		ctx.fillStyle = '#eee'; // Set background colour here
 
 		var chartArea = chartInstance.chartArea;
 		ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);

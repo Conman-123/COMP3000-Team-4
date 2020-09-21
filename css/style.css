@@ -2,7 +2,7 @@
 	margin: 20%;
 }
 
-* {
+body {
     font-family: Montserrat;
 }
 
@@ -27,19 +27,27 @@ h3 {
     text-align: center;
 }
 
-/*------------------- Scale Styles  -------------------*/
+/*------------------- Scales -------------------*/
 .scale {
     position: relative;
 }
 
 .scale-marker {
     position: absolute;
-    border-radius: 50%;
+    border-radius: 100px;
     text-align: center;
     background-color: #043A5E;
     color: white;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 }
 
+/*------------------- Content Boxes -------------------*/
+.content-box {
+    background-color: #989898;
+    color: white;
+    border-radius: 3px;
+    padding: 15px 20px;
+}
 
 
 /*------------------- Score Overview  -------------------*/
@@ -49,19 +57,23 @@ h3 {
 
 #overall-score-container {
     height: 60px;
-    width: 90px;
-    margin-top: 10px;
-    font-size: 20px;
+    margin: 10px 0;
+    font-size: 18px;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 30px;
+}
+
+.block-label {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3px;
 }
 
 /*------------------- Data Analysis -------------------*/
-.data-analysis {
-    background-color: #989898;
-    color: white;
-    border-radius: 10px;
-    padding: 15px;
-}
-
 .data-analysis-content {
     display: none;
 }
@@ -70,9 +82,6 @@ h3 {
 
 /*------------------- Compare Against Previous Scores -------------------*/
 .previous-score-container {
-    background-color: #989898;
-    border-radius: 10px;
-    color: white;
     padding: 15px 30px;
     height: 100%;
     display: flex;
@@ -81,6 +90,8 @@ h3 {
 
 #previous-scores-graph-container {
     flex-grow: 1;
+    padding: 20px;
+    padding-bottom: 10px;
 }
 
 /*------------------- Score in comparison to normative data Section -------------------*/
@@ -101,11 +112,7 @@ h3 {
 
 /*------------------- Possible Next Steps Section -------------------*/
 .next-steps {
-    background-color: #989898;
-    border-radius: 10px;
-    padding: 15px;
     margin-top: 30px;
-    color: white;
 }
 
 .next-steps h1 {
@@ -120,6 +127,8 @@ h3 {
 /*------------------- Coloured Blocks Representing Scores -------------------*/
 #good-block, #good-block-breakdown {
     background-color: #99C63E;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 #good-block-container, #good-block-breakdown {
     flex-grow: 10; /* Set size relative to other blocks (here using the range of score values as the ratio) */
@@ -141,6 +150,8 @@ h3 {
 
 #severe-block, #severe-block-breakdown {
     background-color: #C42A26;
+    border-top-right-radius: 3px;    
+    border-bottom-right-radius: 3px;
 }
 #severe-block-container, #severe-block-breakdown {
     flex-grow: 21;
