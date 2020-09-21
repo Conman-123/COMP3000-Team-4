@@ -10,13 +10,13 @@ const LOINC_ANSWER_CODE_SCORES = {
 
 function getk10WordScore(score) {
 	if (score < 20) {
-		return "Well";
-	} else if (score < 25) {
-		return "Mild mental disorder";
+		return "good";
 	} else if (score < 30) {
-		return "Moderate mental disorder";
+		return "mild";
+	} else if (score < 40) {
+		return "moderate";
 	} else {
-		return "Severe mental disorder";	
+		return "severe";	
 	}
 };
 
@@ -123,6 +123,10 @@ function getAnswerScore(answer) {
 	return -1;
 }
 
+function setDataAnalysis(score) {
+	$("#analysis-" + getk10WordScore(score)).show();
+}
+
 function handleQuestionnaireResponse(responseJson) {
 	var scores = [];
 	// Get scores for each answer
@@ -135,10 +139,13 @@ function handleQuestionnaireResponse(responseJson) {
 		}
 	}
 	
-	// Calculate total score
+	// Calculate and display total score
 	var totalScore = scores.reduce((total, value) => total + value);
 	console.log("Total score = " + totalScore + " '" + getk10WordScore(totalScore) + "'");
 	setScoreScale(totalScore);
+	
+	// Set relevent data analysis
+	setDataAnalysis(totalScore);
 }
 
 function display(data) {

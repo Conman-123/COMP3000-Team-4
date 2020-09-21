@@ -66,23 +66,14 @@ h3 {
 /*------------------- Data Analysis -------------------*/
 .data-analysis {
     background-color: #989898;
+    color: white;
     border-radius: 10px;
-    padding-bottom: 10px;
+    padding: 15px;
     margin-top: 20px;
 }
 
-.data-analysis h1 {
-    padding-top: 5px; 
-    padding-left: 10px;
-}
-
-.data-analysis p {
-    font-size: 15px;
-    margin-left: 10px;
-}
-
-.data-analysis h1, .data-analysis p {
-    color: white;
+.data-analysis-content {
+    display: none;
 }
 
 
