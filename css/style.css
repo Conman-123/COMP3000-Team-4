@@ -36,7 +36,8 @@ h3 {
     position: absolute;
     border-radius: 50%;
     text-align: center;
-    background-color: white;
+    background-color: #043A5E;
+    color: white;
 }
 
 
@@ -62,41 +63,9 @@ h3 {
     font-size: 20px;
 }
 
-
-
-/*------------------- Score Breakdowns -------------------*/
-.score_breakdowns {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.score_breakdowns h3 {
-    font-size: 20px;
-}
-
-.score_breakdowns h2 {
-    padding-top: 30px;
-}
-
-#good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #severe-block-breakdown {
-    height: 50px;
-}
-
-.score_breakdowns .flex-row {
-    margin-bottom: 20px;
-}
-
-#breakdown-score-container, #breakdown2-score-container, #breakdown3-score-container {
-    height: 30px;
-    width: 40px;
-    margin-top: 10px;
-}
-
-
-
 /*------------------- Data Analysis -------------------*/
 .data-analysis {
-    background-color: gray;
+    background-color: #989898;
     border-radius: 10px;
     padding-bottom: 10px;
     margin-top: 20px;
@@ -120,7 +89,7 @@ h3 {
 
 /*------------------- Compare Against Previous Scores -------------------*/
 .previous-score-container {
-    background-color: gray;
+    background-color: #989898;
     margin-top: 20px;
     border-radius: 10px;
     color: white;
@@ -134,13 +103,24 @@ h3 {
 /*------------------- Score in comparison to normative data Section -------------------*/
 .normative-data {
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #severe-block-breakdown {
+    height: 50px;
+}
+
+#breakdown-score-container, #breakdown2-score-container, #breakdown3-score-container {
+    height: 30px;
+    width: 40px;
+    margin-top: 10px;
 }
 
 
 /*------------------- Possible Next Steps Section -------------------*/
 .next-steps {
-    background-color: gray;
+    background-color: #989898;
     border-radius: 10px;
     padding-bottom: 10px;
     margin-top: 30px;
