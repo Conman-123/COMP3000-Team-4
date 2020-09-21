@@ -115,6 +115,10 @@ h3 {
     padding-left: 20px;
 }
 
+.next-steps-content {
+    display: none;
+}
+
 /*------------------- Coloured Blocks Representing Scores -------------------*/
 #good-block, #good-block-breakdown {
     background-color: #99C63E;

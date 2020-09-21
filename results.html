@@ -13,6 +13,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/fhirclient@2.3.1/build/fhir-client.min.js"
         integrity="sha256-n7vfOuBrmsVxTrsfFjBXRi14WSsPzxjd/MqaFcvu85U=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+        integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+        crossorigin="anonymous"></script>
     <script src="js/site.js"></script>
 </head>
 
@@ -106,7 +109,22 @@
                 <div class="next-steps">
                     <div class="next-steps-container">
                         <h1>Possible Next Steps</h1>
-                        <p id="next-steps-content"></p>
+                        <ul class="next-steps-content next-steps-good">
+                            <li>Gather additional information</li>
+                            <li>Keep track of their mental health. After a few weeks, if needed, ask them to retake the
+                                questionnaire</li>
+                        </ul>
+                        <ul class="next-steps-content next-steps-mild next-steps-moderate">
+                            <li>Gather additional information</li>
+                            <li>Create a mental health plan</li>
+                            <li>Keep track of their mental health by asking them to retake the questionnaire over time
+                            </li>
+                        </ul>
+                        <ul class="next-steps-content next-steps-severe">
+                            <li>Gather additional information</li>
+                            <li>Make sure they feel safe</li>
+                            <li>Create a mental health plan and they require immediate attention</li>
+                        </ul>
                     </div>
                 </div>
             </div>

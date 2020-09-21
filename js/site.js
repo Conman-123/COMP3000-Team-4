@@ -124,7 +124,13 @@ function getAnswerScore(answer) {
 }
 
 function setDataAnalysis(score) {
+	$("#analysis-good, #analysis-mild, #analysis-moderate, #analysis-severe").hide();
 	$("#analysis-" + getk10WordScore(score)).show();
+}
+
+function setNextSteps(score) {
+	$(".next-steps-good, .next-steps-mild, .next-steps-moderate, .next-steps-severe").hide();
+	$(".next-steps-" + getk10WordScore(score)).show();
 }
 
 function handleQuestionnaireResponse(responseJson) {
@@ -144,8 +150,11 @@ function handleQuestionnaireResponse(responseJson) {
 	console.log("Total score = " + totalScore + " '" + getk10WordScore(totalScore) + "'");
 	setScoreScale(totalScore);
 	
-	// Set relevent data analysis
+	// Set relevant data analysis
 	setDataAnalysis(totalScore);
+	
+	// Set relevant next steps
+	setNextSteps(totalScore);
 }
 
 function display(data) {
