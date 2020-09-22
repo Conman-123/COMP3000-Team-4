@@ -242,12 +242,21 @@ $(document).ready(function () {
 	$("#whatever").text("Loading...");
 
 	// Set comparison data
-	setNormativeScoreScale(14);
+	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
 
-	const client = new FHIR.client("http://hapi.fhir.org/baseR4");
-	data = client.request("Questionnaire/MDS3.0-SP-1.14")
-		.then(display)
-		.catch(display);
+	//const client = new FHIR.client("http://hapi.fhir.org/baseR4");
+	//data = client.request("Questionnaire/MDS3.0-SP-1.14")
+	//	.then(display)
+	//	.catch(display);
+
+	// Test displaying K10 questionnaire
+	$.ajax({
+		url: "/testResources/k10-questionnaire-resource-working-external-value-set.json",
+		type: "GET",
+		success: function (data) {
+			display(data);
+		}
+	});
 
 	// Handle This Questionnaire Response (for now just use example)
 	$.ajax({

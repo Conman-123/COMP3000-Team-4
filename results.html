@@ -22,112 +22,139 @@
 
 <body>
     <h1>Connect 4 SMART on FHIR App</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <!--Score Overview Section-->
-                <div class="score-overview-container">
-                    <h1 id="score-h1">Score Overview</h1>
-                    <div class="overview-container">
-                        <div id="blocks" class="row no-gutters scale">
-                            <div id="good-block-container" class="col">
-                                <div id="good-block"></div>
-                                <div class="block-label">Good</div>
+
+    <nav>
+        <div role="tablist">
+            <ul class="nav nav-tabs mt-3 pl-2 pl-sm-4">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#nav-dashboard">Results Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-responses">Questionnaire Responses</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!--Score Overview Section-->
+                        <div class="score-overview-container mt-4">
+                            <h1 id="score-h1">Score Overview</h1>
+                            <div class="overview-container">
+                                <div id="blocks" class="row no-gutters scale">
+                                    <div id="good-block-container" class="col">
+                                        <div id="good-block"></div>
+                                        <div class="block-label">Good</div>
+                                    </div>
+                                    <div id="mild-block-container" class="col">
+                                        <div id="mild-block"></div>
+                                        <div class="block-label">Mild</div>
+                                    </div>
+                                    <div id="moderate-block-container" class="col">
+                                        <div id="moderate-block"></div>
+                                        <div class="block-label">Moderate</div>
+                                    </div>
+                                    <div id="severe-block-container" class="col">
+                                        <div id="severe-block"></div>
+                                        <div class="block-label">Severe</div>
+                                    </div>
+                                    <div id="overall-score-container" class="scale-marker">
+                                        <div>Score</div>
+                                        <div id="score-value"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="mild-block-container" class="col">
-                                <div id="mild-block"></div>
-                                <div class="block-label">Mild</div>
-                            </div>
-                            <div id="moderate-block-container" class="col">
-                                <div id="moderate-block"></div>
-                                <div class="block-label">Moderate</div>
-                            </div>
-                            <div id="severe-block-container" class="col">
-                                <div id="severe-block"></div>
-                                <div class="block-label">Severe</div>
-                            </div>
-                            <div id="overall-score-container" class="scale-marker">
-                                <div>Score</div>
-                                <div id="score-value"></div>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!--Data Analysis Section-->
+                                            <div class="data-analysis content-box">
+                                                <div class="data-container">
+                                                    <h2>Data Analysis</h2>
+                                                    <p id="analysis-good" class="data-analysis-content">The patient is of low
+                                                        risk due to the score being within a low range. The patient does not
+                                                        need immediate attention and is likely to be well.</p>
+                                                    <p id="analysis-mild" class="data-analysis-content">The patient is of mild
+                                                        risk due to the score being within a mild range. The patient may not
+                                                        need immediate attention and is likely to have a mild disorder.</p>
+                                                    <p id="analysis-moderate" class="data-analysis-content">The patient is of
+                                                        moderate risk due to the score being within a moderate range. The
+                                                        patient may need immediate attention and is likely to have a moderate
+                                                        disorder.</p>
+                                                    <p id="analysis-severe" class="data-analysis-content">The patient is of high
+                                                        risk due to the score being within a high range. The patient needs
+                                                        immediate attention and is likely to have a severe disorder.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!--Score in comparison to normative data Section-->
+                                            <div class="normative-data">
+                                                <h2>Comparison Against Normative Data</h2>
+                                                <div id="blocks-breakdown" class="row no-gutters scale">
+                                                    <div id="good-block-breakdown" class="col"></div>
+                                                    <div id="mild-block-breakdown" class="col"></div>
+                                                    <div id="moderate-block-breakdown" class="col"></div>
+                                                    <div id="severe-block-breakdown" class="col"></div>
+                                                    <div id="breakdown-score-container" class="scale-marker"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!--Possible Next Steps Section-->
+                                            <div class="next-steps content-box">
+                                                <div class="next-steps-container">
+                                                    <h1>Possible Next Steps</h1>
+                                                    <ul class="next-steps-content next-steps-good">
+                                                        <li>Gather additional information</li>
+                                                        <li>Keep track of their mental health. After a few weeks, if needed, ask them to retake the
+                                                            questionnaire</li>
+                                                    </ul>
+                                                    <ul class="next-steps-content next-steps-mild next-steps-moderate">
+                                                        <li>Gather additional information</li>
+                                                        <li>Create a mental health plan</li>
+                                                        <li>Keep track of their mental health by asking them to retake the questionnaire over time
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="next-steps-content next-steps-severe">
+                                                        <li>Gather additional information</li>
+                                                        <li>Make sure they feel safe</li>
+                                                        <li>Create a mental health plan and they require immediate attention</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-4 mt-md-0">
+                                    <!--Compare Against Previous Scores Section-->
+                                    <div class="previous-score-container content-box">
+                                        <h2>Compare Against Previous Scores</h2>
+                                        <div id="previous-scores-graph-container">
+                                            <canvas id="previous-scores-graph"></canvas>                                    
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-12">
-                                    <!--Data Analysis Section-->
-                                    <div class="data-analysis content-box">
-                                        <div class="data-container">
-                                            <h2>Data Analysis</h2>
-                                            <p id="analysis-good" class="data-analysis-content">The patient is of low
-                                                risk due to the score being within a low range. The patient does not
-                                                need immediate attention and is likely to be well.</p>
-                                            <p id="analysis-mild" class="data-analysis-content">The patient is of mild
-                                                risk due to the score being within a mild range. The patient may not
-                                                need immediate attention and is likely to have a mild disorder.</p>
-                                            <p id="analysis-moderate" class="data-analysis-content">The patient is of
-                                                moderate risk due to the score being within a moderate range. The
-                                                patient may need immediate attention and is likely to have a moderate
-                                                disorder.</p>
-                                            <p id="analysis-severe" class="data-analysis-content">The patient is of high
-                                                risk due to the score being within a high range. The patient needs
-                                                immediate attention and is likely to have a severe disorder.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <!--Score in comparison to normative data Section-->
-                                    <div class="normative-data">
-                                        <h2>Comparison Against Normative Data</h2>
-                                        <div id="blocks-breakdown" class="row no-gutters scale">
-                                            <div id="good-block-breakdown" class="col"></div>
-                                            <div id="mild-block-breakdown" class="col"></div>
-                                            <div id="moderate-block-breakdown" class="col"></div>
-                                            <div id="severe-block-breakdown" class="col"></div>
-                                            <div id="breakdown-score-container" class="scale-marker"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <!--Possible Next Steps Section-->
-                                    <div class="next-steps content-box">
-                                        <div class="next-steps-container">
-                                            <h1>Possible Next Steps</h1>
-                                            <ul class="next-steps-content next-steps-good">
-                                                <li>Gather additional information</li>
-                                                <li>Keep track of their mental health. After a few weeks, if needed, ask them to retake the
-                                                    questionnaire</li>
-                                            </ul>
-                                            <ul class="next-steps-content next-steps-mild next-steps-moderate">
-                                                <li>Gather additional information</li>
-                                                <li>Create a mental health plan</li>
-                                                <li>Keep track of their mental health by asking them to retake the questionnaire over time
-                                                </li>
-                                            </ul>
-                                            <ul class="next-steps-content next-steps-severe">
-                                                <li>Gather additional information</li>
-                                                <li>Make sure they feel safe</li>
-                                                <li>Create a mental health plan and they require immediate attention</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-4 mt-md-0">
-                            <!--Compare Against Previous Scores Section-->
-                            <div class="previous-score-container content-box">
-                                <h2>Compare Against Previous Scores</h2>
-                                <div id="previous-scores-graph-container">
-                                    <canvas id="previous-scores-graph"></canvas>                                    
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-responses">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mt-4">[Questionnaire responses will go here]</div>
                     </div>
                 </div>
             </div>

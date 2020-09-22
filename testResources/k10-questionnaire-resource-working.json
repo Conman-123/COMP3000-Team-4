@@ -1,0 +1,128 @@
+{
+    "resourceType": "Questionnaire",
+    "contained": {
+        "resourceType": "ValueSet",
+        "id": "k10-vs",
+        "name": "K10-value-set",
+        "title": "K10 Value Set",
+        "status": "draft",
+        "compose": {
+            "include": [
+                {
+                    "system": "http://loinc.org",
+                    "concept": [
+                        {
+                            "code": "1",
+                            "display": "None of the time"
+                        },
+                        {
+                            "code": "2",
+                            "display": "A little of the time"
+                        },
+                        {
+                            "code": "3",
+                            "display": "Some of the time"
+                        },
+                        {
+                            "code": "4",
+                            "display": "Most of the time"
+                        },
+                        {
+                            "code": "5",
+                            "display": "All of the time"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "url": "http://hl7.org/fhir/Questionnaire/K10_kessler_psychological_distress_scale",
+    "version": "1.0",
+    "name": "K10_kessler_psychological_distress_scale",
+    "title": "K10 Kessler Psychological Distress Scale",
+    "status": "draft",
+    "experimental": true,
+    "description": "This is a 10-item questionnaire intended to yield a global measure of distress based on questions about anxiety and depressive symptoms that a person has experienced in the most recent 4 week period.",
+    "item": [
+        {
+            "linkId": "1",
+            "prefix": "1.",
+            "text": "During the last 30 days, about how often did you feel tired out for no good reason?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "2",
+            "prefix": "2.",
+            "text": "During the last 30 days, about how often did you feel nervous?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "3",
+            "prefix": "3.",
+            "text": "During the last 30 days, about how often did you feel so nervous that nothing could calm you down?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "4",
+            "prefix": "4.",
+            "text": "During the last 30 days, about how often did you feel hopeless?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "5",
+            "prefix": "5.",
+            "text": "During the last 30 days, about how often did you feel restless or fidgety?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "6",
+            "prefix": "6.",
+            "text": "During the last 30 days, about how often did you feel so restless you could not sit still?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "7",
+            "prefix": "7.",
+            "text": "During the last 30 days, about how often did you feel depressed?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "8",
+            "prefix": "8.",
+            "text": "During the last 30 days, about how often did you feel that everything was an effort?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "9",
+            "prefix": "9.",
+            "text": "During the last 30 days, about how often did you feel so sad that nothing could cheer you up?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        },
+        {
+            "linkId": "10",
+            "prefix": "10.",
+            "text": "During the last 30 days, about how often did you feel worthless?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "#k10-vs"
+        }
+    ]
+}
