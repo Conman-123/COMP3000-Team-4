@@ -2,33 +2,57 @@
     "resourceType": "Questionnaire",
     "contained": {
         "resourceType": "ValueSet",
-        "id": "k10-vs",
-        "name": "K10-value-set",
-        "title": "K10 Value Set",
-        "status": "draft",
+        "id": "LL5278-8",
+        "meta": {
+            "versionId": "2",
+            "lastUpdated": "2020-06-30T03:00:29.631+00:00"
+        },
+        "url": "http://loinc.org/vs/LL5278-8",
+        "identifier": [
+            {
+                "system": "urn:ietf:rfc:3986",
+                "value": "urn:oid:1.3.6.1.4.1.12009.10.1.4128"
+            }
+        ],
+        "version": "Loinc_2.68",
+        "name": "None|ALittle|Some|Most|All of the time",
+        "status": "active",
+        "publisher": "Regenstrief Institute, Inc.",
+        "contact": [
+            {
+                "name": "Regenstrief Institute, Inc.",
+                "telecom": [
+                    {
+                        "system": "url",
+                        "value": "https://loinc.org"
+                    }
+                ]
+            }
+        ],
+        "copyright": "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at https://loinc.org/license/",
         "compose": {
             "include": [
                 {
                     "system": "http://loinc.org",
                     "concept": [
                         {
-                            "code": "1",
+                            "code": "LA6297-1",
                             "display": "None of the time"
                         },
                         {
-                            "code": "2",
+                            "code": "LA14732-4",
                             "display": "A little of the time"
                         },
                         {
-                            "code": "3",
+                            "code": "LA14733-2",
                             "display": "Some of the time"
                         },
                         {
-                            "code": "4",
+                            "code": "LA14734-0",
                             "display": "Most of the time"
                         },
                         {
-                            "code": "5",
+                            "code": "LA6154-4",
                             "display": "All of the time"
                         }
                     ]
@@ -50,7 +74,7 @@
             "text": "During the last 30 days, about how often did you feel tired out for no good reason?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "2",
@@ -58,7 +82,7 @@
             "text": "During the last 30 days, about how often did you feel nervous?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "3",
@@ -66,7 +90,7 @@
             "text": "During the last 30 days, about how often did you feel so nervous that nothing could calm you down?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "4",
@@ -74,7 +98,7 @@
             "text": "During the last 30 days, about how often did you feel hopeless?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "5",
@@ -82,7 +106,7 @@
             "text": "During the last 30 days, about how often did you feel restless or fidgety?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "6",
@@ -90,7 +114,7 @@
             "text": "During the last 30 days, about how often did you feel so restless you could not sit still?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "7",
@@ -98,7 +122,7 @@
             "text": "During the last 30 days, about how often did you feel depressed?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "8",
@@ -106,7 +130,7 @@
             "text": "During the last 30 days, about how often did you feel that everything was an effort?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "9",
@@ -114,7 +138,7 @@
             "text": "During the last 30 days, about how often did you feel so sad that nothing could cheer you up?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         },
         {
             "linkId": "10",
@@ -122,7 +146,7 @@
             "text": "During the last 30 days, about how often did you feel worthless?",
             "type": "choice",
             "required": true,
-            "answerValueSet": "#k10-vs"
+            "answerValueSet": "#LL5278-8"
         }
     ]
 }
