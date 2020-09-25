@@ -27,6 +27,26 @@ h3 {
     text-align: center;
 }
 
+
+/*------------------- Questionnaire Display -------------------*/
+.questionnaire-row {
+    margin-top: 10px;
+}
+
+.answer-col {
+    display: flex;
+}
+
+.answer-col > * {
+    display: inline-block;
+    text-align: center;
+    flex: 1 1 0px;
+}
+
+.answer-col .form-check, .answer-col .form-check-input {
+    margin: 0;
+}
+
 /*------------------- Scales -------------------*/
 .scale {
     position: relative;

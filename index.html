@@ -16,13 +16,80 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
         crossorigin="anonymous"></script>
+        <script src="js/questionnaireDisplay.js"></script>
+        <script src="js/k10.js"></script>
     <script src="js/site.js"></script>
 </head>
 
 <body>
     <h1>Connect 4 SMART on FHIR App</h1>
-    <!--<pre id="whatever"></pre>-->
-    <form id="questionaire"></form>
+    <div class="container">
+        <form id="questionaire">
+            <div class="row questionnaire-radio-group-label-row">
+                <div class="col-8 offset-4 answer-col">
+                    <span class="radio-label">None of the time</span>
+                    <span class="radio-label">A little of the time</span>
+                    <span class="radio-label">Some of the time</span>
+                    <span class="radio-label">Most of the time</span>
+                    <span class="radio-label">All of the time</span>
+                </div>
+            </div>
+            <div class="row questionnaire-row">
+                <div class="col-4 question-col">
+                    1. During the last 30 days, about how often did you feel tired out for no good reason?
+                </div>
+                <div class="col-8 answer-col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-1-none" name="question-1" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-1-none">None of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-1-little" name="question-1" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-1-little">A little of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-1-some" name="question-1" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-1-some">Some of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-1-most" name="question-1" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-1-most">Most of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-1-all" name="question-1" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-1-all">All of the time</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row questionnaire-row">
+                <div class="col-4 question-col">
+                    2. During the last 30 days, about how often did you feel nervous?
+                </div>
+                <div class="col-8 answer-col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-2-none" name="question-2" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-2-none">None of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-2-little" name="question-2" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-2-little">A little of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-2-some" name="question-2" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-2-some">Some of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-2-most" name="question-2" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-2-most">Most of the time</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="question-2-all" name="question-2" type="radio" value="LA14732-4">
+                        <label class="form-check-label sr-only" for="question-2-all">All of the time</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
