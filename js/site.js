@@ -76,19 +76,24 @@ function createQuestionaire(data) {
 				var input;
 				var answer;
 
-				for (var i = 0; i < questionData.answerOption.length; i++) {
+				if (questionData.hasOwnProperty("answerOption")) {
+					for (var i = 0; i < questionData.answerOption.length; i++) {
 
-					input = questionInput(questionData.type, questionData.answerOption[i].code, questionData.text);
-					answer = `<label>${input + questionData.answerOption[i].valueCoding.display}</label><br>`;
+						input = questionInput(questionData.type, questionData.answerOption[i].code, questionData.text);
+						answer = `<label>${input + questionData.answerOption[i].valueCoding.display}</label><br>`;
 
-					answers = answers + answer;
+						answers = answers + answer;
+						var name = questionData.text;
+
+						var question = `<p>${name}</p>${answers}<br>`;
+						$("#questionaire").append(question);
+					}
+				} else if (questionData.hasOwnProperty("answerValueSet")) {
+					const smart = FHIR.oauth2;
+					const smart.authorize(clientID, clientSecret);
+					const loincClien =  new FHIR.client(LOINC_FHIR_API_URL);
 				}
-
-				var name = questionData.text;
-
-				var question = `<p>${name}</p>${answers}<br>`;
-				$("#questionaire").append(question);
-			}			
+			}		
 		}
 
 	}
