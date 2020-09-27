@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient@2.3.1/build/fhir-client.min.js"
+        integrity="sha256-n7vfOuBrmsVxTrsfFjBXRi14WSsPzxjd/MqaFcvu85U=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+        integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+        crossorigin="anonymous"></script>
+    <script src="js/site.js"></script>
+</head>
+
+<body>
+    <h1>Connect 4 SMART on FHIR App</h1>
+
+    <nav>
+        <div role="tablist">
+            <ul class="nav nav-tabs mt-3 pl-2 pl-sm-4">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#nav-dashboard">Results Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-responses">Questionnaire Responses</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <!--Score Overview Section-->
+                        <div class="score-overview-container mt-4">
+                            <h1 id="score-h1">Score Overview</h1>
+                            <div class="overview-container">
+                                <div id="blocks" class="row no-gutters scale">
+                                    <div id="good-block-container" class="col">
+                                        <div id="good-block"></div>
+                                        <div class="block-label">Minimal</div>
+                                    </div>
+                                    <div id="mild-block-container" class="col">
+                                        <div id="mild-block"></div>
+                                        <div class="block-label">Mild</div>
+                                    </div>
+                                    <div id="moderate-block-container" class="col">
+                                        <div id="moderate-block"></div>
+                                        <div class="block-label">Moderate</div>
+                                    </div>
+                                    <div id="moderately-severe-block-container" class="col">
+                                        <div id="moderately-severe-block"></div>
+                                        <div class="block-label">Moderately Severe</div>
+                                    </div>
+                                    <div id="severe-block-container" class="col">
+                                        <div id="severe-block"></div>
+                                        <div class="block-label">Severe</div>
+                                    </div>
+                                    <div id="overall-score-container" class="scale-marker">
+                                        <div>Score</div>
+                                        <div id="score-value"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!--Data Analysis Section-->
+                                            <div class="data-analysis content-box">
+                                                <div class="data-container">
+                                                    <h2>Data Analysis</h2>
+                                                    <p id="analysis-good" class="data-analysis-content">The patient may not require 
+                                                        treatment due to them likely suffering from minimal depression. </p>
+                                                    <p id="analysis-mild" class="data-analysis-content">The patient may require some 
+                                                        attention and watchful waiting due to them likely suffering from 
+                                                        mild depression.</p>
+                                                    <p id="analysis-moderate" class="data-analysis-content">The patient needs 
+                                                        attention and action is required due to them likely suffering from 
+                                                        moderate depression.</p>
+                                                    <p id="analysis-moderately-severe" class="data-analysis-content">The patient 
+                                                        requires immediate attention and action is needed due to them likely 
+                                                        suffering from moderate severe depression.</p>
+                                                    <p id="analysis-severe" class="data-analysis-content">The patient requires 
+                                                        immediate attention and additional actions need to take place due to 
+                                                        them likely suffering from severe depression.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!--Score in comparison to normative data Section-->
+                                            <div class="normative-data">
+                                                <h2>Comparison Against Normative Data</h2>
+                                                <div id="blocks-breakdown" class="row no-gutters scale">
+                                                    <div id="good-block-breakdown" class="col"></div>
+                                                    <div id="mild-block-breakdown" class="col"></div>
+                                                    <div id="moderate-block-breakdown" class="col"></div>
+                                                    <div id="moderately-severe-block-breakdown" class="col"></div>
+                                                    <div id="severe-block-breakdown" class="col"></div>
+                                                    <div id="breakdown-score-container" class="scale-marker"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-4 mt-md-0">
+                                    <!--Compare Against Previous Scores Section-->
+                                    <div class="previous-score-PHQ9-container content-box">
+                                        <h2>Compare Against Previous Scores</h2>
+                                        <div id="previous-scores-PHQ9-graph-container">
+                                            <canvas id="previous-scores-graph"></canvas>                                    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <!--Possible Next Steps Section-->
+                                    <div class="next-steps content-box">
+                                        <div class="next-steps-container">
+                                            <h1>Possible Next Steps</h1>
+                                            <ul class="next-steps-content next-steps-good">
+                                                <li>They may not require treatment; however, they should continue to take the PHQ-9 Questionnaire if needed</li>
+                                            </ul>
+                                            <ul class="next-steps-content next-steps-mild">
+                                                <li>At follow-up, the patient will need to redo the PHQ-9 Questionnaire</li>
+                                            </ul>
+                                            <ul class="next-steps-content next-steps-moderate">
+                                                <li>Create a treatment plan. What could be included is:</li>
+                                                <ul><li>Counselling</li></ul>
+                                                <ul><li>Follow-ups</li></ul>
+                                                <ul><li>Pharmacotherapy</li></ul>
+                                            </ul>
+                                            <ul class="next-steps-content next-steps-moderately-severe">
+                                                <li>Immediate initiation of:</li>
+                                                <ul><li>Pharmacotherapy</li></ul>
+                                                <ul><li>Psychotherapy</li></ul>
+                                            </ul>
+                                            <ul class="next-steps-content next-steps-severe">
+                                                <li>Immediate referral to mental health specialist</li>
+                                                <li>Instant initiation of pharmacotherapy</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="question_breakdowns">
+                            <h2>Question Breakdowns</h2>
+                            <h3>Question 9</h3>
+                            <p>Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?</p>
+                            <div class="d-flex flex-row">
+                                <div class="d-flex justify-content-center">
+                                    <div class="breakdown-block1"></div>
+                                    <div class="breakdown-block2"></div>
+                                    <div class="breakdown-block3"></div>
+                                    <div class="breakdown-block4"></div>
+                                </div>
+                                <div id="breakdown-question9-container"></div>
+                            </div>
+                            <div id="info-question9">
+                                <p>The patient’s response suggests that they may be having thoughts 
+                                    about hurting themselves or ideas about committing suicide.</p>
+                                <p>Immediate action needs to take place.</p>
+                                <p>Based on the overall risk assessment and if clinically appropriate 
+                                further investigation, referrals or transfer to get an emergency psychiatric 
+                                evaluation will need to take place.</p>
+                            </div>
+                            <h3>Question 10</h3>
+                            <p>Ask the patient: how difficult have these problems made it to do work, take care of things 
+                                at home, or get along with other people?</p>
+                            <div class="d-flex flex-row">
+                                <div class="d-flex justify-content-center">
+                                    <div class="breakdown-block1"></div>
+                                    <div class="breakdown-block2"></div>
+                                    <div class="breakdown-block3"></div>
+                                    <div class="breakdown-block4"></div>
+                                </div>
+                                <div id="breakdown-question10-container"></div>
+                            </div>
+                            <p id="never-question10">Functionally, the patient is not experiencing limitations from their symptoms based on how they responded.</p>
+                            <!--<p id="somewhat-question10">Functionally, the patient is experiencing somewhat difficulties with life tasks because of their symptoms based on how they responded.</p>
+                            <p id="very-question10">Functionally, the patient is finding it very difficult to perform life tasks because of their symptoms based on how they responded.</p>
+                            <p id="extreme-question10">Functionally, the patient is finding it extremely difficult to perform life tasks because of their symptoms based on how they responded.</p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-responses">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mt-4">[Questionnaire responses will go here]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
