@@ -31,79 +31,6 @@ function getk10WordScore(score) {
 	}
 };
 
-function shortenName(name) {
-	var nameRE = /((?:\w+)(?:\/|\s)?)+/g;
-	return name.match(nameRE)[0];
-}
-
-function questionInput(type, value, name) {
-
-	var input = "";
-	name = shortenName(name);
-
-	if (type == "choice" || type == "open-choice") {
-		input = `<input value="${value}" name="${name}" type="radio">`;
-		return input;
-	}
-
-	if (type == "decimal" || type == "integer") {
-		input = `<input name="${name}" type="number">`;
-		return input;
-	}
-
-	return '<input type="radio">';
-}
-
-function createQuestionaire(data) {
-	// var type = ["radio", "text"];
-
-	stack = data.reverse();
-	n = 0
-
-	while (stack.length > 0) {
-		questionData = stack.pop();
-		console.log(n+= 1);
-
-		if (questionData.type == "group") {
-			if (questionData.hasOwnProperty("item")) {
-				stack = stack.concat(questionData.item.reverse());
-			}
-		} else {
-			console.log(questionData);
-			if (questionData.type == "choice") {
-				var answers = "";
-				var answersAmount;
-				var input;
-				var answer;
-
-				if (questionData.hasOwnProperty("answerOption")) {
-					for (var i = 0; i < questionData.answerOption.length; i++) {
-
-						input = questionInput(questionData.type, questionData.answerOption[i].code, questionData.text);
-						answer = `<label>${input + questionData.answerOption[i].valueCoding.display}</label><br>`;
-
-						answers = answers + answer;
-						var name = questionData.text;
-
-						var question = `<p>${name}</p>${answers}<br>`;
-						$("#questionaire").append(question);
-					}
-				} else if (questionData.hasOwnProperty("answerValueSet")) {
-					const smart = FHIR.oauth2;
-					const smart.authorize(clientID, clientSecret);
-					const loincClien =  new FHIR.client(LOINC_FHIR_API_URL);
-				}
-			}		
-		}
-
-	}
-
-	$("#questionaire").append('<input type="submit" formtarget="_self">');
-}
-function displayQuestionnaireResponse(responseItems) {
-	// TODO: display the responses 
-}
-
 function setScoreScale(score) {
 	// Convert score to a percentage of max possible score
 	var scorePercent = ((score - 10) / 40) * 100;
@@ -239,7 +166,7 @@ function handleQuestionnaireResponse(responseJson) {
 function display(data) {
 	console.log(data);
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
-	createQuestionaire(data.item);
+	getQuestionData(data.item);
 }
 
 $(document).ready(function () {
@@ -256,7 +183,7 @@ $(document).ready(function () {
 
 	// Test displaying K10 questionnaire
 	$.ajax({
-		url: "/testResources/k10-questionnaire-resource-working-external-value-set.json",
+		url: "/testResources/k10-questionnaire-resource-working.json",
 		type: "GET",
 		success: function (data) {
 			display(data);

@@ -76,8 +76,24 @@
             "required": true,
             "answerOption":  [{
                 "valueCoding" : {
-                    
-                },
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
             }]
         },
         {
@@ -86,9 +102,27 @@
             "text": "During the last 30 days, about how often did you feel nervous?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "3",
@@ -96,9 +130,27 @@
             "text": "During the last 30 days, about how often did you feel so nervous that nothing could calm you down?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "4",
@@ -106,9 +158,27 @@
             "text": "During the last 30 days, about how often did you feel hopeless?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "5",
@@ -116,9 +186,27 @@
             "text": "During the last 30 days, about how often did you feel restless or fidgety?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "6",
@@ -126,9 +214,27 @@
             "text": "During the last 30 days, about how often did you feel so restless you could not sit still?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "7",
@@ -136,9 +242,27 @@
             "text": "During the last 30 days, about how often did you feel depressed?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "8",
@@ -146,9 +270,27 @@
             "text": "During the last 30 days, about how often did you feel that everything was an effort?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "9",
@@ -156,9 +298,27 @@
             "text": "During the last 30 days, about how often did you feel so sad that nothing could cheer you up?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         },
         {
             "linkId": "10",
@@ -166,9 +326,27 @@
             "text": "During the last 30 days, about how often did you feel worthless?",
             "type": "choice",
             "required": true,
-            "answerOption": {
-                    
-                },
+            "answerOption":  [{
+                "valueCoding" : {
+                    "code": "LA6297-1",
+                    "display": "None of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14732-4",
+                    "display": "A little of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14733-2",
+                    "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA6154-4",
+                    "display": "All of the time"
+                }
+            }]
         }
     ]
 }
