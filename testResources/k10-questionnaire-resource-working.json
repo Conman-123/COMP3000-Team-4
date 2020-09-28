@@ -91,6 +91,11 @@
                 }
             },{
                 "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
+                }
+            },{
+                "valueCoding" : {
                     "code": "LA6154-4",
                     "display": "All of the time"
                 }
@@ -116,6 +121,11 @@
                 "valueCoding" : {
                     "code": "LA14733-2",
                     "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
                 }
             },{
                 "valueCoding" : {
@@ -147,6 +157,11 @@
                 }
             },{
                 "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
+                }
+            },{
+                "valueCoding" : {
                     "code": "LA6154-4",
                     "display": "All of the time"
                 }
@@ -172,6 +187,11 @@
                 "valueCoding" : {
                     "code": "LA14733-2",
                     "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
                 }
             },{
                 "valueCoding" : {
@@ -203,6 +223,11 @@
                 }
             },{
                 "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
+                }
+            },{
+                "valueCoding" : {
                     "code": "LA6154-4",
                     "display": "All of the time"
                 }
@@ -228,6 +253,11 @@
                 "valueCoding" : {
                     "code": "LA14733-2",
                     "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
                 }
             },{
                 "valueCoding" : {
@@ -259,6 +289,11 @@
                 }
             },{
                 "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
+                }
+            },{
+                "valueCoding" : {
                     "code": "LA6154-4",
                     "display": "All of the time"
                 }
@@ -284,6 +319,11 @@
                 "valueCoding" : {
                     "code": "LA14733-2",
                     "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
                 }
             },{
                 "valueCoding" : {
@@ -315,6 +355,11 @@
                 }
             },{
                 "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
+                }
+            },{
+                "valueCoding" : {
                     "code": "LA6154-4",
                     "display": "All of the time"
                 }
@@ -340,6 +385,11 @@
                 "valueCoding" : {
                     "code": "LA14733-2",
                     "display": "Some of the time"
+                }
+            },{
+                "valueCoding" : {
+                    "code": "LA14734-0",
+                    "display": "Most of the time"
                 }
             },{
                 "valueCoding" : {

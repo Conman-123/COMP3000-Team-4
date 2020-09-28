@@ -71,7 +71,7 @@ h3 {
 
 
 /*------------------- Score Overview  -------------------*/
-#good-block, #mild-block, #moderate-block, #moderately-severe-block, #severe-block {
+#good-block, #mild-block, #moderate-block, #severe-block {
     height: 80px;
 }
 
@@ -110,24 +110,9 @@ h3 {
     max-height: 100%;
 }
 
-.previous-score-PHQ9-container {
-    padding: 15px 30px;
-    height: 100%;
-    display: flex;
-    flex-direction: column; 
-    min-height: 200px;
-    max-height: 350px;
-}
-
 #previous-scores-graph-container {
     flex-grow: 1;
     padding: 20px;
-    padding-bottom: 10px;
-}
-
-#previous-scores-PHQ9-graph-container {
-    flex-grow: 1;
-    padding: 5px;
     padding-bottom: 10px;
 }
 
@@ -161,51 +146,8 @@ h3 {
     padding-left: 30px;
 }
 
-
-/*------------------- Question Breakdowns -------------------*/
-.question_breakdowns {
-    margin-left: 20px;
-}
-
-.question_breakdowns h2 {
-    padding-top: 35px;
-}
-
-.question_breakdowns h3 {
-    padding-top: 15px;
-}
-
-.question_breakdowns p {
-    font-size: 0.85em;
-}
-
-#info-question9 p {
-    margin-bottom: 8px;
-}
-
-h3 {
-    font-size:  1.1em;
-    font-weight: bold;
-}
-
-.breakdown-block1, .breakdown-block2, .breakdown-block3, .breakdown-block4 {
-    width: 75px;
-    height: 50px;
-}
-
-.question_breakdowns .flex-row {
-    margin-bottom: 20px;
-}
-
-#breakdown-question9-container, #breakdown-question10-container {
-    height: 30px;
-    width: 40px;
-    margin-top: 10px;
-}
-
-
 /*------------------- Coloured Blocks Representing Scores -------------------*/
-#good-block, #good-block-breakdown, .breakdown-block1 {
+#good-block, #good-block-breakdown {
     background-color: #99C63E;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -214,28 +156,21 @@ h3 {
     flex-grow: 10; /* Set size relative to other blocks (here using the range of score values as the ratio) */
 }
 
-#mild-block, #mild-block-breakdown, .breakdown-block2 {
+#mild-block, #mild-block-breakdown {
     background-color: #F6DD0B;
 }
 #mild-block-container, #mild-block-breakdown {
     flex-grow: 5;
 }
 
-#moderate-block, #moderate-block-breakdown, .breakdown-block3 {
+#moderate-block, #moderate-block-breakdown {
     background-color: #E87000;
 }
 #moderate-block-container, #moderate-block-breakdown {
     flex-grow: 5;
 }
 
-#moderately-severe-block, #moderately-severe-block-breakdown {
-    background-color: #FF3A00;
-}
-#moderately-severe-block-container, #moderately-severe-block-breakdown {
-    flex-grow: 5;
-}
-
-#severe-block, #severe-block-breakdown, .breakdown-block4 {
+#severe-block, #severe-block-breakdown {
     background-color: #C42A26;
     border-top-right-radius: 3px;    
     border-bottom-right-radius: 3px;

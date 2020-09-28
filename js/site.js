@@ -162,11 +162,14 @@ function handleQuestionnaireResponse(responseJson) {
 	// Handle Previous Scores
 	handlePreviousScores(totalScore);
 }
+var questions = [];
 
 function display(data) {
 	console.log(data);
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
-	getQuestionData(data.item);
+	questions = getQuestionData(data.item);
+	console.log(questions);
+	displayQuestionaire(questions);
 }
 
 $(document).ready(function () {
