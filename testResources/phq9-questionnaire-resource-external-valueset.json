@@ -1,0 +1,90 @@
+{
+    "resourceType": "Questionnaire",
+    "url": "http://hl7.org/fhir/Questionnaire/PHQ_9_Patient_Health_Questionnaire_9",
+    "version": "1.0",
+    "name": "PHQ_9_Patient_Health_Questionnaire_9",
+    "title": "PHQ-9 Patient Health Questionnaire 9",
+    "status": "draft",
+    "experimental": true,
+    "description": "The Patient Health Questionnaire (PHQ) is a self-administered version of the PRIME-MD diagnostic instrument for common mental disorders. The PHQ-9 is the depression module, which scores each of the 9 DSM-IV criteria as “0” (not at all) to “3” (nearly every day).",
+    "item": [
+        {
+            "linkId": "1",
+            "text": "Over the last 2 weeks, how often have you been bothered by any of the following problems?",
+            "type": "group",
+            "required": true,
+            "item":  [
+                {
+                    "linkId": "1.1",
+                    "prefix": "1.",
+                    "text": "Little interest or pleasure in doing things",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.2",
+                    "prefix": "2.",
+                    "text": "Feeling down, depressed, or hopeless",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.3",
+                    "prefix": "3.",
+                    "text": "Trouble falling or staying asleep, or sleeping too much",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.4",
+                    "prefix": "4.",
+                    "text": "Feeling tired or having little energy",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.5",
+                    "prefix": "5.",
+                    "text": "Poor appetite or overeating",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.6",
+                    "prefix": "6.",
+                    "text": "Feeling bad about yourself—or that you are a failure or have let yourself or your family down",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.7",
+                    "prefix": "7.",
+                    "text": "Trouble concentrating on things, such as reading the newspaper or watching television",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.8",
+                    "prefix": "8.",
+                    "text": "Moving or speaking so slowly that other people could have noticed? Or the opposite—being so fidgety or restless that you have been moving around a lot more than usual",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                },{
+                    "linkId": "1.9",
+                    "prefix": "9.",
+                    "text": "Thoughts that you would be better off dead or of hurting yourself in some way",
+                    "type": "choice",
+                    "required": true,
+                    "answerValueSet": "https://loinc.org/LL358-3/"
+                }
+            ]
+        },{
+            "linkId": "2",
+            "text": "If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+            "type": "choice",
+            "required": true,
+            "answerValueSet": "https://loinc.org/LL359-1/"
+        }
+    ]
+}
