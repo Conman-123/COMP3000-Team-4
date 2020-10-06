@@ -1,11 +1,10 @@
 const LOINC_FHIR_API_URL = "https://fhir.loinc.org";
 // The LOINC answers don't keep track of scores. Keep track of them here
 const LOINC_ANSWER_CODE_SCORES = {
-	"LA6297-1": 1,
-	"LA14732-4": 2,
-	"LA14733-2": 3,
-	"LA14734-0": 4,
-	"LA6154-4": 5
+	"LA6568-5": 0,
+	"LA6569-3": 1,
+	"LA6570-1": 2,
+	"LA6571-9": 3
 }
 
 // Chart.js plugin to set chart area background color. Retrieved from https://github.com/chartjs/Chart.js/issues/3479
@@ -20,12 +19,14 @@ Chart.plugins.register({
 });
 
 function getPHQ9WordScore(score) {
-	if (score < 20) {
+	if (score < 5) {
 		return "good";
-	} else if (score < 25) {
+	} else if (score < 10) {
 		return "mild";
-	} else if (score < 30) {
+	} else if (score < 15) {
 		return "moderate";
+	} else if (score < 20) {
+		return "moderately-severe";
 	} else {
 		return "severe";
 	}
@@ -33,7 +34,7 @@ function getPHQ9WordScore(score) {
 
 function setScoreScale(score) {
 	// Convert score to a percentage of max possible score
-	var scorePercent = ((score - 10) / 40) * 100;
+	var scorePercent = (score / 27) * 100;
 	// Move the score marker to this percentage along the total width of the score scale
 	// Also transform it left by this percentage of its own width so it never goes over the edges of the scale
 	//		(e.g. a score of 100% will transform the marker left 100% of its own width)
@@ -45,8 +46,8 @@ function setScoreScale(score) {
 	$("#score-value").text(score);
 }
 function setNormativeScoreScale(score) {
-	// Convert score to a percentage of max possible score (setting the minimum to zero rather than ten)
-	var scorePercent = ((score - 10) / 40) * 100;
+	// Convert score to a percentage of max possible score
+	var scorePercent = (score / 27) * 100;
 	// Move the score marker to this percentage along the total width of the score scale
 	// Also transform it left by this percentage of its own width so it never goes over the edges of the scale
 	//		(e.g. a score of 100% will transform the marker left 100% of its own width)
@@ -58,9 +59,9 @@ function setNormativeScoreScale(score) {
 
 function getAnswerScore(answer) {
 	if (answer[0]?.valueCoding?.system == "http://loinc.org") {
-		var score = LOINC_ANSWER_CODE_SCORES[answer[0].valueCoding.code];
-		if (score) {
-			return score;
+		var code = answer[0].valueCoding.code;
+		if (code in LOINC_ANSWER_CODE_SCORES) {
+			return LOINC_ANSWER_CODE_SCORES[code];
 		} else {
 			console.error("Unknown code for answer: " + answer)
 		}
@@ -84,7 +85,7 @@ function setNextSteps(score) {
 function handlePreviousScores(currentScore) {
 	// TODO: implement properly
 	var dateArray = ["2019-06-24", "2020-08-16 (current)"];
-	var scoreArray = [29, currentScore];
+	var scoreArray = [17, currentScore];
 	// Create array of background colors for the bars so the current bar can be a different colour
 	var barColors = [];
 	// TODO: Change this to loop through all past questionnaires, and set the **CURRENT** questionnaire as the other colour NOT just the last one (cause might be viewing a past questionnaire)
@@ -115,7 +116,7 @@ function handlePreviousScores(currentScore) {
 					type: "linear",
 					ticks: {
 						min: 0,
-						max: 50,
+						max: 27,
 						fontColor: "#ffffff"
 					},
 					gridLines: {
@@ -138,16 +139,31 @@ function handlePreviousScores(currentScore) {
 	});
 }
 
-function handleQuestionnaireResponse(responseJson) {
+function getItemScores(item) {
 	var scores = [];
-	// Get scores for each answer
-	for (var i = 0; i < responseJson.item.length; i++) {
-		item = responseJson.item[i];
+	if (item.linkId === "2") {
+		// This question is not scored
+		return scores;
+	}
+
+	if (item.hasOwnProperty("answer")) {
 		var score = getAnswerScore(item.answer);
 		if (score > 0) {
 			scores.push(score);
 		}
+	} else if (item.hasOwnProperty("item")) {
+		for (var i = 0; i < item.item.length; i++) {
+			var subScores = getItemScores(item.item[i]);
+			subScores.forEach(function(val) {
+				scores.push(val);
+			});
+		}
 	}
+	return scores;
+}
+
+function handleQuestionnaireResponse(responseJson) {
+	var scores = getItemScores(responseJson);
 
 	// Calculate and display total score
 	var totalScore = scores.reduce((total, value) => total + value);
@@ -184,21 +200,24 @@ $(document).ready(function () {
 	//	.then(display)
 	//	.catch(display);
 
-	// Test displaying K10 questionnaire
-	$.ajax({
-		url: "/testResources/k10-questionnaire-resource-working.json",
-		type: "GET",
-		success: function (data) {
-			display(data);
-		}
-	});
+	// Test displaying PHQ-9 questionnaire
+	//$.ajax({
+	//	url: "/testResources/k10-questionnaire-resource-working.json",
+	//	type: "GET",
+	//	success: function (data) {
+	//		display(data);
+	//	}
+	//});
 
 	// Handle This Questionnaire Response (for now just use example)
 	$.ajax({
-		url: "/testResources/k10-questionnaire-response.json",
+		url: "/testResources/phq9-questionnaire-response.json",
 		type: "GET",
 		success: function (data) {
 			handleQuestionnaireResponse(data);
+		},
+		error: function(xhr, status, error) {
+			console.error(error);
 		}
 	});
 
