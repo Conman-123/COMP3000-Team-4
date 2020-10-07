@@ -71,7 +71,7 @@ h3 {
 
 
 /*------------------- Score Overview  -------------------*/
-#good-block, #mild-block, #moderate-block, #moderately-severe-block, #severe-block {
+#good-block, #mild-block, #moderate-block, #moderately-severe-block, #slightly-high-block, #high-block, #severe-block {
     height: 80px;
 }
 
@@ -183,6 +183,22 @@ h3 {
     flex-grow: 5;
 }
 
+#slightly-high-block, #slightly-high-block-breakdown{
+    background-color: #FF5500;
+}
+
+#slightly-high-block-container, #slightly-high-block-breakdown {
+    flex-grow: 5;
+}
+
+#high-block, #high-block-breakdown {
+    background-color: #FF0000;
+}
+
+#high-block-container, #high-block-breakdown {
+    flex-grow: 5;
+}
+
 #severe-block, #severe-block-breakdown {
     background-color: #C42A26;
     border-top-right-radius: 3px;    
@@ -191,6 +207,8 @@ h3 {
 #severe-block-container, #severe-block-breakdown {
     flex-grow: 21;
 }
+
+
 /*------------------- Coloured Blocks Representing Scores for PHQ-9 -------------------*/
 #phq9 #good-block-container, #phq9 #good-block-breakdown, 
 #phq9 #mild-block-container, #phq9 #mild-block-breakdown,
