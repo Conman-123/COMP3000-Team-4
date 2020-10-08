@@ -19,7 +19,7 @@ Chart.plugins.register({
 	}
 });
 
-function getPHQ9WordScore(score) {
+function getk10WordScore(score) {
 	if (score < 20) {
 		return "good";
 	} else if (score < 25) {
@@ -73,12 +73,12 @@ function getAnswerScore(answer) {
 
 function setDataAnalysis(score) {
 	$("#analysis-good, #analysis-mild, #analysis-moderate, #analysis-severe").hide();
-	$("#analysis-" + getPHQ9WordScore(score)).show();
+	$("#analysis-" + getk10WordScore(score)).show();
 }
 
 function setNextSteps(score) {
 	$(".next-steps-good, .next-steps-mild, .next-steps-moderate, .next-steps-severe").hide();
-	$(".next-steps-" + getPHQ9WordScore(score)).show();
+	$(".next-steps-" + getk10WordScore(score)).show();
 }
 
 function handlePreviousScores(currentScore) {
@@ -162,13 +162,12 @@ function handleQuestionnaireResponse(responseJson) {
 	// Handle Previous Scores
 	handlePreviousScores(totalScore);
 }
+
 var questions = [];
 
 function display(data) {
-	console.log(data);
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	questions = getQuestionData(data.item);
-	console.log(questions);
 	displayQuestionaire(questions);
 }
 
@@ -195,26 +194,28 @@ $(document).ready(function () {
 
 	// Handle This Questionnaire Response (for now just use example)
 	$.ajax({
-		url: "/testResources/k10-questionnaire-response.json",
+		url: "/testResources/k10-response.json",
 		type: "GET",
 		success: function (data) {
 			handleQuestionnaireResponse(data);
 		}
 	});
 
-
 	$("#questionaire").submit(function (event) {
+		event.preventDefault();
+		results = $("#questionaire").serializeArray();
 		$.ajax({
-			type: "POST",
-			url: "serverUrl",
-			data: formData,
-			success: function () { },
+			method: "POST",
+			url: "/js/questionaire.php",
+			contentType: "application/json; charset=utf-8",
 			dataType: "json",
-			contentType: "application/json"
+			data: JSON.stringify(results),
+			success: function (data) {
+			}
 		});
 
+		window.location.replace("results.html");
 
-		event.preventDefault();
 	});
 
 });
