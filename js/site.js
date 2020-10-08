@@ -167,7 +167,7 @@ function displayUserAnswer(responseJson) {
 		var results = `<p>Question ${item.linkId}: ${item.text}</p>
 						<p>Answer: ${getAnswerText(item.answer)}</p>`;
 
-		$("#questionaireResults").append(results);
+		$("#questionnaireResults").append(results);
 	}
 }
 
@@ -203,7 +203,7 @@ var questions = [];
 function display(data) {
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	questions = getQuestionData(data.item);
-	displayQuestionaire(questions);
+	displayQuestionnaire(questions);
 }
 
 $(document).ready(function () {
@@ -236,12 +236,12 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#questionaire").submit(function (event) {
+	$("#questionnaire").submit(function (event) {
 		event.preventDefault();
-		results = $("#questionaire").serializeArray();
+		results = $("#questionnaire").serializeArray();
 		$.ajax({
 			method: "POST",
-			url: "/js/questionaire.php",
+			url: "/js/questionnaire.php",
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			data: JSON.stringify(results),

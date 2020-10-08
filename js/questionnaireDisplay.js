@@ -97,8 +97,8 @@ function createAnswerName(question) {
 	return `question-${question[0]}`
 }
 
-function displayQuestionaire(quesions) {
-	$("#questionaire").append(`
+function displayQuestionnaire(quesions) {
+	$("#questionnaire").append(`
 			<div class="row questionnaire-radio-group-label-row">
 				<div class="col-8 offset-4 answer-col" id="colLabel">
 				</div>
