@@ -3,14 +3,14 @@
 }
 
 body {
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
 }
 
 .score-overview-container h1, .next-steps-container h1 {
     font-size: 30px;
 }
 
-.score_breakdowns h2, .normative-data h2, .previous-score-container h2 {
+.score_breakdowns h2, .normative-data h2, .previous-score-container h2, .previous-score-phq9-container h2 {
     font-size: 25px;
 }
 
@@ -18,15 +18,10 @@ body {
     text-align: center;
 }
 
-h3 {
-    font-size: 2em;
+/*------------------- Questionnaire List Group -------------------*/
+#questionnaire-list-group .list-group-item.disabled, #questionnaire-list-group .list-group-item:disabled {
+    background-color: #eee;
 }
-
-.h3 {
-    font-size: 1em;
-    text-align: center;
-}
-
 
 /*------------------- Questionnaire Display -------------------*/
 .questionnaire-row {
@@ -116,10 +111,22 @@ h3 {
     max-height: 100%;
 }
 
+.previous-score-phq9-container {
+    padding: 15px 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
 #previous-scores-graph-container {
     flex-grow: 1;
     padding: 20px;
     padding-bottom: 10px;
+}
+
+.previous-score-phq9-container #previous-scores-graph-container {
+    padding: 10px 0;
 }
 
 /*------------------- Score in comparison to normative data Section -------------------*/

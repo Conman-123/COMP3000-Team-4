@@ -84,9 +84,9 @@ function createAnswerName(question) {
 	return `question-${question[0]}`
 }
 
-function displayQuestionaire(quesions) {
+function displayQuestionnaire(quesions) {
 	console.log("run");
-	$("#questionaire").append(`
+	$("#questionnaire").append(`
 			<div class="row questionnaire-radio-group-label-row">
 				<div class="col-8 offset-4 answer-col" id="colLabel">
 				</div>
@@ -132,8 +132,8 @@ function displayQuestionaire(quesions) {
 				</div>
 			`;
 
-		$("#questionaire").append(questionContainer);
+		$("#questionnaire").append(questionContainer);
 	}
 
-	$("#questionaire").append(`<button type="submit" form="questionaire" value="Submit">Submit</button>`);
+	$("#questionnaire").append(`<button type="submit" class="btn btn-primary mt-4 px-5" form="questionnaire" value="Submit">Submit</button>`);
 }

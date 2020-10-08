@@ -169,7 +169,7 @@ function display(data) {
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	questions = getQuestionData(data.item);
 	console.log(questions);
-	displayQuestionaire(questions);
+	displayQuestionnaire(questions);
 }
 
 $(document).ready(function () {
@@ -203,7 +203,7 @@ $(document).ready(function () {
 	});
 
 
-	$("#questionaire").submit(function (event) {
+	$("#questionnaire").submit(function (event) {
 		$.ajax({
 			type: "POST",
 			url: "serverUrl",

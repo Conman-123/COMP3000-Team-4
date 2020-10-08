@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -18,14 +19,36 @@
         crossorigin="anonymous"></script>
     <!--<script src="js/k10.js"></script>-->
     <script src="js/site.js"></script>
-    <script src="js/questionnaireDisplay.js"></script>
 </head>
 
 <body>
-    <h1>Connect 4 SMART on FHIR App</h1>
-    <div class="container">
-        <form id="questionaire">
-        </form>
+    <h1><a href="/index.html" class="nav-link text-dark">Connect 4 SMART on FHIR App</a></h1>
+    <div class="container d-flex flex-column justify-content-center">
+        <h2 class="mt-5">Select a Questionnaire</h2>
+        <div class="list-group mt-3" id="questionnaire-list-group">
+
+            <a href="/K10Dashboard.html" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between align-items-center">
+                <h5 class="mb-0">K10 Kessler Psychological Distress Scale</h5>
+                <span class="badge badge-primary ml-3">1</span>
+              </div>
+            </a>
+
+            <a href="/PHQ9Dashboard.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <h5 class="mb-0">PHQ-9 Patient Health Questionnaire 9</h5>
+                  <span class="badge badge-primary ml-3">1</span>
+                </div>
+            </a>
+
+            <a href="/AUSDRISKDashboard.html" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <h5 class="mb-0">AUSDRISK Australian Type 2 Diabetes Risk Assessment Tool</h5>
+                  <span class="badge badge-primary ml-3">0</span>
+                </div>
+            </a>
+
+          </div>
     </div>
 </body>
 

@@ -185,7 +185,7 @@ function display(data) {
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	questions = getQuestionData(data.item);
 	console.log(questions);
-	displayQuestionaire(questions);
+	displayQuestionnaire(questions);
 }
 
 $(document).ready(function () {
@@ -193,7 +193,7 @@ $(document).ready(function () {
 	$("#whatever").text("Loading...");
 
 	// Set comparison data
-	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
+	setNormativeScoreScale(5); // TEMPORARY!!!! TODO: CHANGE THIS
 
 	//const client = new FHIR.client("http://hapi.fhir.org/baseR4");
 	//data = client.request("Questionnaire/MDS3.0-SP-1.14")
@@ -201,13 +201,13 @@ $(document).ready(function () {
 	//	.catch(display);
 
 	// Test displaying PHQ-9 questionnaire
-	//$.ajax({
-	//	url: "/testResources/k10-questionnaire-resource-working.json",
-	//	type: "GET",
-	//	success: function (data) {
-	//		display(data);
-	//	}
-	//});
+	$.ajax({
+		url: "/testResources/phq9-questionnaire-resource.json",
+		type: "GET",
+		success: function (data) {
+			display(data);
+		}
+	});
 
 	// Handle This Questionnaire Response (for now just use example)
 	$.ajax({
@@ -222,7 +222,7 @@ $(document).ready(function () {
 	});
 
 
-	$("#questionaire").submit(function (event) {
+	$("#questionnaire").submit(function (event) {
 		$.ajax({
 			type: "POST",
 			url: "serverUrl",
