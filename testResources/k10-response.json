@@ -23,7 +23,7 @@
 				{
 					"valueCoding": {
 						"system": "http://loinc.org",
-						"code": "LA6154-4"
+						"code": "LA14732-4"
 					}
 				}
 			]
@@ -59,7 +59,7 @@
 				{
 					"valueCoding": {
 						"system": "http://loinc.org",
-						"code": "LA14734-0"
+						"code": "LA14732-4"
 					}
 				}
 			]
@@ -83,7 +83,7 @@
 				{
 					"valueCoding": {
 						"system": "http://loinc.org",
-						"code": "LA6297-1"
+						"code": "LA14732-4"
 					}
 				}
 			]
@@ -107,7 +107,7 @@
 				{
 					"valueCoding": {
 						"system": "http://loinc.org",
-						"code": "LA6297-1"
+						"code": "LA14732-4"
 					}
 				}
 			]

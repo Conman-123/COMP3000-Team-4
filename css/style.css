@@ -66,7 +66,7 @@ body {
 
 
 /*------------------- Score Overview  -------------------*/
-#good-block, #mild-block, #moderate-block, #moderately-severe-block, #slightly-high-block, #high-block, #severe-block {
+#good-block, #mild-block, #moderate-block, #severe-block {
     height: 80px;
 }
 
@@ -86,12 +86,6 @@ body {
     font-weight: bold;
     text-align: center;
     margin-top: 3px;
-}
-
-#blocks .col {
-    /* Allow the blocks to shrink as much as needed to keep their proportions even when the text doesn't fit */
-    min-width: 0;
-    min-height: 0;
 }
 
 /*------------------- Data Analysis -------------------*/
@@ -134,7 +128,7 @@ body {
     margin-top: 20px;
 }
 
-#good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #moderately-severe-block-breakdown, #severe-block-breakdown {
+#good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #severe-block-breakdown {
     height: 50px;
 }
 
@@ -183,29 +177,6 @@ body {
     flex-grow: 5;
 }
 
-#moderately-severe-block, #moderately-severe-block-breakdown {
-    background-color: #d1410d;
-}
-#moderately-severe-block-container, #moderately-severe-block-breakdown {
-    flex-grow: 5;
-}
-
-#slightly-high-block, #slightly-high-block-breakdown{
-    background-color: #FF5500;
-}
-
-#slightly-high-block-container, #slightly-high-block-breakdown {
-    flex-grow: 5;
-}
-
-#high-block, #high-block-breakdown {
-    background-color: #FF0000;
-}
-
-#high-block-container, #high-block-breakdown {
-    flex-grow: 5;
-}
-
 #severe-block, #severe-block-breakdown {
     background-color: #C42A26;
     border-top-right-radius: 3px;    
@@ -215,18 +186,6 @@ body {
     flex-grow: 21;
 }
 
-
-/*------------------- Coloured Blocks Representing Scores for PHQ-9 -------------------*/
-#phq9 #good-block-container, #phq9 #good-block-breakdown, 
-#phq9 #mild-block-container, #phq9 #mild-block-breakdown,
-#phq9 #moderate-block-container, #phq9 #moderate-block-breakdown,
-#phq9 #moderately-severe-block-container, #moderately-severe-block-breakdown  {
-    flex-grow: 5; /* Set size relative to other blocks (here using the range of score values as the ratio) */
-}
-
-#phq9 #severe-block-container, #phq9 #severe-block-breakdown {
-    flex-grow: 8;
-}
 
 /*------------------- Score Container -------------------*/
 

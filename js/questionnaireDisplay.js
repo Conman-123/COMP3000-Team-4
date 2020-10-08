@@ -1,9 +1,24 @@
 function shortenName(name) {
+	/*
+	*	Create a shorten version of question name
+	*	
+	*	Param:
+	*		name(str): question name
+	*
+	*	Return: the first characters of name upto a comma
+	*/
 	var nameRE = /((?:\w+)(?:\/|\s)?)+/g;
 	return name.match(nameRE)[0];
 }
 
 function questionInput(type, value, name) {
+	/*
+	*	Create answer input, currently only support radio button
+	*	
+	*	Param:
+	*		type(str): type of input
+	*		value(int): 
+	*/
 
 	var input = "";
 	name = shortenName(name);
@@ -35,14 +50,12 @@ function getQuestionData(data) {
 
 	while (stack.length > 0) {
 		questionData = stack.pop();
-		console.log(n+= 1);
 
 		if (questionData.type == "group") {
 			if (questionData.hasOwnProperty("item")) {
 				stack = stack.concat(questionData.item.reverse());
 			}
 		} else {
-			console.log(questionData);
 			var question = [
 				questionData.linkId,
 				questionData.prefix,
@@ -84,9 +97,14 @@ function createAnswerName(question) {
 	return `question-${question[0]}`
 }
 
+<<<<<<< HEAD
 function displayQuestionnaire(quesions) {
 	console.log("run");
 	$("#questionnaire").append(`
+=======
+function displayQuestionaire(quesions) {
+	$("#questionaire").append(`
+>>>>>>> ff2e4d0ed5033d46a83edf666556b47fd745d48e
 			<div class="row questionnaire-radio-group-label-row">
 				<div class="col-8 offset-4 answer-col" id="colLabel">
 				</div>
@@ -105,6 +123,7 @@ function displayQuestionnaire(quesions) {
 	for (var i = 0; i < questions.length; i++) {
 		var prefix = getPrefix(questions[i]);
 		var display = getDisplayText(questions[i]);
+		
 		var name = createAnswerName(questions[i]);
 		var answers = getAnswers(quesions[i]);
 		var answersText = "";
@@ -116,16 +135,13 @@ function displayQuestionnaire(quesions) {
 
 			answersText += `
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" id="${id}" name="${name}" type="radio" value="${value}">
-					<label class="form-check-label sr-only" for="${id}">${text}</label>
+					<input class="form-check-input" id="${id}" name="${name}" type="radio" value="${value}">	
 				</div>
 			`;
 		}
 		var questionContainer = `
 				<div class="row questionnaire-row">
-					<div class="col-4 question-col">
-						${prefix} ${display}
-					</div>
+					<div class="col-4 question-col">${prefix} ${display}</div>
 					<div class="col-8 answer-col">
 						${answersText}
 					</div>
