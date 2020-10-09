@@ -47,7 +47,7 @@ body {
     position: relative;
 }
 
-.scale-marker {
+.scale-marker, #breakdown-question9-container, #breakdown-question10-container {
     position: absolute;
     border-radius: 100px;
     text-align: center;
@@ -144,6 +144,47 @@ body {
     margin-top: 10px;
 }
 
+/*------------------- Question Breakdowns -------------------*/
+.question_breakdowns {
+    margin-left: 20px;
+}
+
+.question_breakdowns h2 {
+    padding-top: 35px;
+}
+
+.question_breakdowns h3 {
+    padding-top: 15px;
+}
+
+.question_breakdowns p {
+    font-size: 0.85em;
+}
+
+#info-question9 p {
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size:  1.1em;
+    font-weight: bold;
+}
+
+.breakdown-block1, .breakdown-block2, .breakdown-block3, .breakdown-block4 {
+    width: 75px;
+    height: 50px;
+}
+
+.question_breakdowns .flex-row {
+    margin-bottom: 20px;
+}
+
+#breakdown-question9-container, #breakdown-question10-container {
+    height: 30px;
+    width: 40px;
+    margin-top: 10px;
+}
+
 
 /*------------------- Possible Next Steps Section -------------------*/
 .next-steps {
@@ -160,26 +201,26 @@ body {
 }
 
 /*------------------- Coloured Blocks Representing Scores -------------------*/
-#good-block, #good-block-breakdown {
+#good-block, #good-block-breakdown, .breakdown-block1 {
     background-color: #99C63E;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
-#good-block-container, #good-block-breakdown {
+#good-block-container, #good-block-breakdown, .breakdown-block1 {
     flex-grow: 10; /* Set size relative to other blocks (here using the range of score values as the ratio) */
 }
 
-#mild-block, #mild-block-breakdown {
+#mild-block, #mild-block-breakdown,.breakdown-block2 {
     background-color: #F6DD0B;
 }
-#mild-block-container, #mild-block-breakdown {
+#mild-block-container, #mild-block-breakdown, .breakdown-block2 {
     flex-grow: 5;
 }
 
-#moderate-block, #moderate-block-breakdown {
+#moderate-block, #moderate-block-breakdown, .breakdown-block3 {
     background-color: #E87000;
 }
-#moderate-block-container, #moderate-block-breakdown {
+#moderate-block-container, #moderate-block-breakdown, .breakdown-block3 {
     flex-grow: 5;
 }
 
@@ -206,12 +247,12 @@ body {
     flex-grow: 5;
 }
 
-#severe-block, #severe-block-breakdown {
+#severe-block, #severe-block-breakdown, .breakdown-block4 {
     background-color: #C42A26;
     border-top-right-radius: 3px;    
     border-bottom-right-radius: 3px;
 }
-#severe-block-container, #severe-block-breakdown {
+#severe-block-container, #severe-block-breakdown, .breakdown-block4 {
     flex-grow: 21;
 }
 
