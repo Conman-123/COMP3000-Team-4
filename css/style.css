@@ -24,8 +24,9 @@ body {
 }
 
 /*------------------- Questionnaire Display -------------------*/
-.questionnaire-row {
-    margin-top: 10px;
+div[class^="row questionnaire-row"] {
+    height: 100px;
+    padding: 10px;
 }
 
 .answer-col {
@@ -38,7 +39,7 @@ body {
     flex: 1 1 0px;
 }
 
-.answer-col .form-check, .answer-col .form-check-input {
+.answer-col .form-check, .answer-col {
     margin: 0;
 }
 
@@ -276,4 +277,74 @@ h3 {
         margin-left: 5px;
         margin-right: 5px;
     }
+}
+
+/* K-10 Form and Response*/
+
+#col-label span {
+    margin: 0 2.5%;
+}
+
+.question-label {
+    background-color: #669acb;
+    font-weight: bold;
+    color: white;
+}
+
+.question-col {
+    margin: auto;
+    color: #389ccb;
+}
+
+.questionnaire-row-0 {
+
+}
+
+.questionnaire-row-1 {
+    background-color: #f2f2f2;
+}
+
+.form-check-inline {
+    margin: auto !important;
+}
+
+.form-check-input {
+    display: none;
+    margin: 0;
+}
+
+.form-check-inline span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid black;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+
+.form-check-input + span img {
+    opacity: 0;
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.form-check-input:checked + span img {
+    opacity: 1;
+}
+
+.submit-button {
+    background-color: #1c5c77;
+    border: 1px solid #1c5c77;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+#questionnaireResponse {
+    margin-bottom: 5%
 }

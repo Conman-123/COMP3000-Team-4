@@ -1,19 +1,12 @@
 const LOINC_FHIR_API_URL = "https://fhir.loinc.org";
 // The LOINC answers don't keep track of scores. Keep track of them here
+
 const LOINC_ANSWER_CODE_SCORES = {
 	"LA6297-1": 1,
 	"LA14732-4": 2,
 	"LA14733-2": 3,
 	"LA14734-0": 4,
 	"LA6154-4": 5
-}
-
-const LOINC_TO_TEXT = {
-	"LA6297-1": "None of the time",
-	"LA14732-4": "A little of the time",
-	"LA14733-2": "Some of the time",
-	"LA14734-0": "Most of the time",
-	"LA6154-4": "All of the time"
 }
 
 // Chart.js plugin to set chart area background color. Retrieved from https://github.com/chartjs/Chart.js/issues/3479
@@ -146,31 +139,6 @@ function handlePreviousScores(currentScore) {
 	});
 }
 
-function getAnswerText(answer) {
-	if (answer[0]?.valueCoding?.system == "http://loinc.org") {
-		var text = LOINC_TO_TEXT[answer[0].valueCoding.code];
-		if (text) {
-			return text;
-		} else {
-			console.error("Unknown code for answer: " + answer)
-		}
-	} else {
-		console.error("Unkonwn code system for answer: " + answer);
-	}
-	// If reached here, errored. Return -1 to signal error
-	return -1;
-}
-
-function displayUserAnswer(responseJson) {
-	for (var i = 0; i < responseJson.item.length; i++) {
-		var item = responseJson.item[i];
-		var results = `<p>Question ${item.linkId}: ${item.text}</p>
-						<p>Answer: ${getAnswerText(item.answer)}</p>`;
-
-		$("#questionnaireResults").append(results);
-	}
-}
-
 function handleQuestionnaireResponse(responseJson) {
 	var scores = [];
 	// Get scores for each answer
@@ -194,16 +162,13 @@ function handleQuestionnaireResponse(responseJson) {
 
 	// Handle Previous Scores
 	handlePreviousScores(totalScore);
-
-	displayUserAnswer(responseJson);
 }
 
 var questions = [];
 
 function display(data) {
-	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	questions = getQuestionData(data.item);
-	displayQuestionnaire(questions);
+	displayQuestionnaire(questions, null, "questionnaire");
 }
 
 $(document).ready(function () {
@@ -233,6 +198,7 @@ $(document).ready(function () {
 		type: "GET",
 		success: function (data) {
 			handleQuestionnaireResponse(data);
+			displayUserResponse(data, "/testResources/k10-questionnaire-resource-working.json", "questionnaireResponse");
 		}
 	});
 

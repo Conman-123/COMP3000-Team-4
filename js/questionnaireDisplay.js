@@ -17,7 +17,11 @@ function questionInput(type, value, name) {
 	*	
 	*	Param:
 	*		type(str): type of input
-	*		value(int): 
+	*		value(int): value of the answer
+	*		name(str): display text of the answer
+	*
+	*	Return:
+	*		str: input html element
 	*/
 
 	var input = "";
@@ -36,14 +40,10 @@ function questionInput(type, value, name) {
 	return '<input type="radio">';
 }
 
-function displayQuestionnaireResponse(responseItems) {
-	// TODO: display the responses 
-}
-
-var questions = [];
-
 function getQuestionData(data) {
 	// var type = ["radio", "text"];
+
+	var questions = [];
 
 	stack = data.reverse();
 	n = 0
@@ -97,22 +97,41 @@ function createAnswerName(question) {
 	return `question-${question[0]}`
 }
 
-function displayQuestionnaire(quesions) {
-	$("#questionnaire").append(`
-			<div class="row questionnaire-radio-group-label-row">
-				<div class="col-8 offset-4 answer-col" id="colLabel">
+function getAnswerCode(answer) {
+	return answer.valueCoding.code;
+}
+
+function getCheckedAnswer(response) {
+	if (response != undefined) {
+		var answerCode = getAnswerCode(response.answer[0]);
+		return answerCode;
+	}
+	return "";
+}
+
+function displayQuestionnaire(quesions, responseJson, formDisplay) {
+	$(`#${formDisplay}`).append(`
+			<div class="row questionnaire-row question-label">
+				<div class="col-4">
+					<span>In the last 4 weeks...</span>
+				</div>
+
+				<div class="col-8 answer-col" id="col-label">
 				</div>
 			</div>
 		`);
 
 	var question = questions[0];
+
 	for (var i = 0; i < 5; i++) {
 		var label = question[4][i].valueCoding.display;
 
-		$("#colLabel").append(`
+		$("#col-label").append(`
 			<span class="radio-label">${label}</span>
 			`);
 	}
+
+	var readOnly = (responseJson == null) ? "" : "disabled";
 
 	for (var i = 0; i < questions.length; i++) {
 		var prefix = getPrefix(questions[i]);
@@ -122,19 +141,27 @@ function displayQuestionnaire(quesions) {
 		var answers = getAnswers(quesions[i]);
 		var answersText = "";
 
+		var checked = (responseJson == null) ? "" : getCheckedAnswer(responseJson.item[i]);
+
 		for (var k = 0; k < answers.length; k++) {
 			var value = getValue(answers[k]);
 			var text = answers[k].valueCoding.display;
 			var id = createAnswerId(text, name);
+			var isChecked = (checked === value) ? "checked" : "";
 
 			answersText += `
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" id="${id}" name="${name}" type="radio" value="${value}">	
+					<label>
+						<input class="form-check-input" id="${id}" name="${name}" type="radio" value="${value}" ${isChecked} ${readOnly}>
+						<span>
+							<img src="/img/check.png">
+						</span>
+					</label>
 				</div>
 			`;
 		}
 		var questionContainer = `
-				<div class="row questionnaire-row">
+				<div class="row questionnaire-row-${i%2}">
 					<div class="col-4 question-col">${prefix} ${display}</div>
 					<div class="col-8 answer-col">
 						${answersText}
@@ -142,8 +169,25 @@ function displayQuestionnaire(quesions) {
 				</div>
 			`;
 
-		$("#questionnaire").append(questionContainer);
+		$(`#${formDisplay}`).append(questionContainer);
 	}
 
-	$("#questionnaire").append(`<button type="submit" class="btn btn-primary mt-4 px-5" form="questionnaire" value="Submit">Submit</button>`);
+	if (responseJson == null) {
+			$(`#${formDisplay}`).append(`<div class="row">
+		<button type="submit" class="btn btn-primary mt-4 px-5 submit-button" form="questionnaire" value="Submit">Submit</button>
+		</div>
+		`);
+	}
+	
+}
+
+function displayUserResponse(responseJson, questionnaire, display) {
+	$.ajax({
+		url: questionnaire,
+		type: "GET",
+		success: function (data) {
+			var questions = getQuestionData(data.item);
+			displayQuestionnaire(questions, responseJson, display);
+		}
+	});
 }

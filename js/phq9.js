@@ -185,7 +185,7 @@ function display(data) {
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	questions = getQuestionData(data.item);
 	console.log(questions);
-	displayQuestionnaire(questions);
+	//displayQuestionnaire(questions);
 }
 
 $(document).ready(function () {
