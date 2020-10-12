@@ -103,13 +103,14 @@ function getAnswerCode(answer) {
 
 function getCheckedAnswer(response) {
 	if (response != undefined) {
+		console.log(response);
 		var answerCode = getAnswerCode(response.answer[0]);
 		return answerCode;
 	}
 	return "";
 }
 
-function displayQuestionnaire(quesions, responseJson, formDisplay) {
+function displayQuestionnaire(questions, responseJson, formDisplay) {
 	$(`#${formDisplay}`).append(`
 			<div class="row questionnaire-row question-label">
 				<div class="col-4">
@@ -122,9 +123,9 @@ function displayQuestionnaire(quesions, responseJson, formDisplay) {
 		`);
 
 	var question = questions[0];
-
-	for (var i = 0; i < 5; i++) {
-		var label = question[4][i].valueCoding.display;
+	var numberOfAnswer = question[question.length - 1].length;
+	for (var i = 0; i < numberOfAnswer; i++) {
+		var label = question[question.length - 1][i].valueCoding.display;
 
 		$("#col-label").append(`
 			<span class="radio-label">${label}</span>
@@ -138,7 +139,7 @@ function displayQuestionnaire(quesions, responseJson, formDisplay) {
 		var display = getDisplayText(questions[i]);
 		
 		var name = createAnswerName(questions[i]);
-		var answers = getAnswers(quesions[i]);
+		var answers = getAnswers(questions[i]);
 		var answersText = "";
 
 		var checked = (responseJson == null) ? "" : getCheckedAnswer(responseJson.item[i]);
@@ -160,6 +161,7 @@ function displayQuestionnaire(quesions, responseJson, formDisplay) {
 				</div>
 			`;
 		}
+
 		var questionContainer = `
 				<div class="row questionnaire-row-${i%2}">
 					<div class="col-4 question-col">${prefix} ${display}</div>

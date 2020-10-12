@@ -1,4 +1,3 @@
-const LOINC_FHIR_API_URL = "https://fhir.loinc.org";
 // The LOINC answers don't keep track of scores. Keep track of them here
 const LOINC_ANSWER_CODE_SCORES = {
 	"LA6568-5": 0,
@@ -178,14 +177,13 @@ function handleQuestionnaireResponse(responseJson) {
 	// Handle Previous Scores
 	handlePreviousScores(totalScore);
 }
-var questions = [];
 
 function display(data) {
 	console.log(data);
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
-	questions = getQuestionData(data.item);
+	var questions = getQuestionData(data.item);
 	console.log(questions);
-	//displayQuestionnaire(questions);
+	displayQuestionnaire(questions);
 }
 
 $(document).ready(function () {
@@ -215,6 +213,7 @@ $(document).ready(function () {
 		type: "GET",
 		success: function (data) {
 			handleQuestionnaireResponse(data);
+			displayUserResponse(data, "/testResources/phq9-questionnaire-resource.json", "questionnaireResponse");
 		},
 		error: function(xhr, status, error) {
 			console.error(error);
