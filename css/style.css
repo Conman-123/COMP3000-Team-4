@@ -18,6 +18,12 @@ body {
     text-align: center;
 }
 
+/*------------------- Index Page -------------------*/
+#loader {
+    width: 150px;
+    max-width: 100%;
+}
+
 /*------------------- Questionnaire List Group -------------------*/
 #questionnaire-list-group .list-group-item.disabled, #questionnaire-list-group .list-group-item:disabled {
     background-color: #eee;

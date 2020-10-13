@@ -21,36 +21,42 @@
     <!--<script src="js/k10.js"></script>-->
     <script type="text/javascript" src="js/questionnaireDisplay.js"></script>
     <script src="js/site.js"></script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
     <h1><a href="/index.html" class="nav-link text-dark">Connect 4 SMART on FHIR App</a></h1>
     <div class="container d-flex flex-column justify-content-center">
         <h2 class="mt-5">Select a Questionnaire</h2>
-        <div class="list-group mt-3" id="questionnaire-list-group">
+        <div id="loader-container" class="flex-column align-items-center mt-5" style="display: flex;">
+            <img id="loader" src="/img/loading.gif" alt="loading">
+            <div class="mt-4">Fetching Questionnaires...</div>
+        </div>
+        <div class="list-group mt-3" id="questionnaire-list-group" style="display: none;">
 
-            <a href="/K10Dashboard.html" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="/K10Dashboard.html" id="k10-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
               <div class="d-flex w-100 justify-content-between align-items-center">
                 <h5 class="mb-0">K10 Kessler Psychological Distress Scale</h5>
-                <span class="badge badge-primary ml-3">1</span>
+                <span class="badge badge-primary ml-3" id="k10-num-responses">0</span>
               </div>
             </a>
 
-            <a href="/PHQ9Dashboard.html" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="/PHQ9Dashboard.html" id="phq9-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
                 <div class="d-flex w-100 justify-content-between align-items-center">
                   <h5 class="mb-0">PHQ-9 Patient Health Questionnaire 9</h5>
-                  <span class="badge badge-primary ml-3">1</span>
+                  <span class="badge badge-primary ml-3" id="phq9-num-responses">0</span>
                 </div>
             </a>
 
-            <a href="/AUSDRISKDashboard.html" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
+            <a href="/AUSDRISKDashboard.html" id="ausdrisk-link" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
                 <div class="d-flex w-100 justify-content-between align-items-center">
                   <h5 class="mb-0">AUSDRISK Australian Type 2 Diabetes Risk Assessment Tool</h5>
-                  <span class="badge badge-primary ml-3">0</span>
+                  <span class="badge badge-primary ml-3" id="ausdrisk-num-responses">0</span>
                 </div>
             </a>
 
           </div>
+          <div id="list-message"></div>
     </div>
 </body>
 
