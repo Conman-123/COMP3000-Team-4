@@ -96,12 +96,13 @@ function getAnswerData(data) {
 }
 
 var questionPrefix = 1;
-var group = 0;
 
 function getPrefix(question) {
 	var prefix = question[1];
-	if (group != question[0].substr(0, question[0].indexOf(','))) {
-		group = question[0].substr(0, question[0].indexOf(','));
+	var group = 0;
+
+	if (group != question[0].split(".")[0]) {
+		group = question[0].split(".")[0];
 		questionPrefix = 1;
 	}
 
@@ -147,8 +148,19 @@ function getCheckedAnswer(response) {
 	return "";
 }
 
+function createAnswerLabel(question, location) {
+	var numberOfAnswer = question[question.length - 1].length;
+	for (var i = 0; i < numberOfAnswer; i++) {
+		var label = question[question.length - 1][i].valueCoding.display;
+
+		$(`#${location}`).append(`
+			<span class="radio-label">${label}</span>
+			`);
+	}
+}
+
 function displayQuestionnaire(questions, responseJson, formDisplay) {
-	console.log(responseJson);
+	var group = 1;
 	$(`#${formDisplay}`).append(`
 			<div class="row questionnaire-row question-label">
 				<div class="col-4">
@@ -160,19 +172,27 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 			</div>
 		`);
 
-	var question = questions[0];
-	var numberOfAnswer = question[question.length - 1].length;
-	for (var i = 0; i < numberOfAnswer; i++) {
-		var label = question[question.length - 1][i].valueCoding.display;
-
-		$("#col-label").append(`
-			<span class="radio-label">${label}</span>
-			`);
-	}
+	createAnswerLabel(questions[0], "col-label");
 
 	var readOnly = (responseJson == null) ? "" : "disabled";
 
 	for (var i = 0; i < questions.length; i++) {
+
+		if (group != questions[i][0].split(".")[0]) {
+			group = questions[i][0].split(".")[0];
+			$(`#${formDisplay}`).append(`
+				<div class="row questionnaire-row question-label">
+					<div class="col-4">
+						<span></span>
+					</div>
+
+					<div class="col-8 answer-col" id="group-separator-${group}">
+					</div>
+				</div>
+				`);
+			createAnswerLabel(questions[i], `group-separator-${group}`);
+		}
+
 		var prefix = getPrefix(questions[i]);
 		var display = getDisplayText(questions[i]);
 		
