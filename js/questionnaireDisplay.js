@@ -41,7 +41,6 @@ function questionInput(type, value, name) {
 }
 
 function getQuestionData(data) {
-	// var type = ["radio", "text"];
 
 	var questions = [];
 
@@ -71,8 +70,47 @@ function getQuestionData(data) {
 	return questions;
 }
 
+function getAnswerData(data) {
+	var answers = [];
+
+	stack = data.reverse();
+	n = 0
+
+	while (stack.length > 0) {
+		answerData = stack.pop();
+
+		if (answerData.hasOwnProperty("item")) {
+			stack = stack.concat(answerData.item.reverse());
+		} else {
+			var answer = [
+				answerData.linkId,
+				answerData.text,
+				answerData.answer
+			];
+
+			answers.push(answer);
+		}
+	}
+
+	return answers;
+}
+
+var questionPrefix = 1;
+var group = 0;
+
 function getPrefix(question) {
-	return question[1];
+	var prefix = question[1];
+	if (group != question[0].substr(0, question[0].indexOf(','))) {
+		group = question[0].substr(0, question[0].indexOf(','));
+		questionPrefix = 1;
+	}
+
+	if (prefix == null) {
+		prefix = `${group}.${questionPrefix}`;
+		questionPrefix += 1;
+	}
+
+	return prefix;
 }
 
 function getDisplayText(question) {
@@ -103,14 +141,14 @@ function getAnswerCode(answer) {
 
 function getCheckedAnswer(response) {
 	if (response != undefined) {
-		console.log(response);
-		var answerCode = getAnswerCode(response.answer[0]);
+		var answerCode = getAnswerCode(response[2][0]);
 		return answerCode;
 	}
 	return "";
 }
 
 function displayQuestionnaire(questions, responseJson, formDisplay) {
+	console.log(responseJson);
 	$(`#${formDisplay}`).append(`
 			<div class="row questionnaire-row question-label">
 				<div class="col-4">
@@ -142,7 +180,7 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 		var answers = getAnswers(questions[i]);
 		var answersText = "";
 
-		var checked = (responseJson == null) ? "" : getCheckedAnswer(responseJson.item[i]);
+		var checked = (responseJson == null) ? "" : getCheckedAnswer(responseJson[i]);
 
 		for (var k = 0; k < answers.length; k++) {
 			var value = getValue(answers[k]);
@@ -180,16 +218,17 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 		</div>
 		`);
 	}
-	
 }
 
 function displayUserResponse(responseJson, questionnaire, display) {
+
 	$.ajax({
 		url: questionnaire,
 		type: "GET",
 		success: function (data) {
 			var questions = getQuestionData(data.item);
-			displayQuestionnaire(questions, responseJson, display);
+			var response = getAnswerData(responseJson.item);
+			displayQuestionnaire(questions, response, display);
 		}
 	});
 }

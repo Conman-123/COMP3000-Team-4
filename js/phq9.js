@@ -179,11 +179,10 @@ function handleQuestionnaireResponse(responseJson) {
 }
 
 function display(data) {
-	console.log(data);
 	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
 	var questions = getQuestionData(data.item);
 	console.log(questions);
-	displayQuestionnaire(questions);
+	displayQuestionnaire(questions, null, "questionnaire");
 }
 
 $(document).ready(function () {
@@ -214,6 +213,7 @@ $(document).ready(function () {
 		success: function (data) {
 			handleQuestionnaireResponse(data);
 			displayUserResponse(data, "/testResources/phq9-questionnaire-resource.json", "questionnaireResponse");
+
 		},
 		error: function(xhr, status, error) {
 			console.error(error);
