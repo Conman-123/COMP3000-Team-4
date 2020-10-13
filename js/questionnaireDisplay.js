@@ -152,7 +152,7 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 	$(`#${formDisplay}`).append(`
 			<div class="row questionnaire-row question-label">
 				<div class="col-4">
-					<span>In the last 4 weeks...</span>
+					<span></span>
 				</div>
 
 				<div class="col-8 answer-col" id="col-label">
