@@ -12,6 +12,12 @@ function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+function sortQuestionnaireResponsesByDate(responses) {
+    responses.sort(function(a, b) {
+        return (a.authored < b.authored) ? -1 : ((a.authored > b.authored) ? 1 : 0);
+    });
+}
+
 $(document).ready(function () {
     // Use this block while testing with an open FHIR server
     const client = FHIR.client({

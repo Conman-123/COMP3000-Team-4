@@ -44,7 +44,7 @@ function getQuestionData(data) {
 
 	var questions = [];
 
-	stack = data.reverse();
+	stack = data.slice().reverse(); // Slice so it creates a new array and reverses that instead of modifying the original array (which breaks stuff)
 	n = 0
 
 	while (stack.length > 0) {
@@ -52,7 +52,7 @@ function getQuestionData(data) {
 
 		if (questionData.type == "group") {
 			if (questionData.hasOwnProperty("item")) {
-				stack = stack.concat(questionData.item.reverse());
+				stack = stack.concat(questionData.item.slice().reverse()); // Slice so it creates a new array and reverses that instead of modifying the original array (which breaks stuff)
 			}
 		} else {
 			var question = [
@@ -73,14 +73,14 @@ function getQuestionData(data) {
 function getAnswerData(data) {
 	var answers = [];
 
-	stack = data.reverse();
+	stack = data.slice().reverse(); // Slice so it creates a new array and reverses that instead of modifying the original array (which breaks stuff)
 	n = 0
 
 	while (stack.length > 0) {
 		answerData = stack.pop();
 
 		if (answerData.hasOwnProperty("item")) {
-			stack = stack.concat(answerData.item.reverse());
+			stack = stack.concat(answerData.item.slice().reverse()); // Slice so it creates a new array and reverses that instead of modifying the original array (which breaks stuff)
 		} else {
 			var answer = [
 				answerData.linkId,
@@ -161,6 +161,7 @@ function createAnswerLabel(question, location) {
 
 function displayQuestionnaire(questions, responseJson, formDisplay) {
 	var group = 1;
+	$(`#${formDisplay}`).html("");
 	$(`#${formDisplay}`).append(`
 			<div class="row questionnaire-row question-label">
 				<div class="col-4">

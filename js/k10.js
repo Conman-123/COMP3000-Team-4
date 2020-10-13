@@ -81,9 +81,9 @@ function setNextSteps(score) {
 	$(".next-steps-" + getk10WordScore(score)).show();
 }
 
-function handlePreviousScores(currentScore) {
+function handlePreviousScores(currentScore, response) {
 	// TODO: implement properly
-	var dateArray = ["2019-06-24", "2020-08-16 (current)"];
+	var dateArray = ["2019-06-24", response.authored + " (current)"];
 	var scoreArray = [29, currentScore];
 	// Create array of background colors for the bars so the current bar can be a different colour
 	var barColors = [];
@@ -160,7 +160,7 @@ function handleQuestionnaireResponse(responseJson) {
 	setNextSteps(totalScore);
 
 	// Handle Previous Scores
-	handlePreviousScores(totalScore);
+	handlePreviousScores(totalScore, responseJson);
 }
 
 function display(data) {
@@ -210,9 +210,12 @@ function oldTestingInitPage() {
 	});
 }
 
+// -- GLOBALS --
+var k10Responses;
+
 async function initPage(client) {
 	// Get all of this patient's K10 questionnaire responses
-	var k10Responses = [];
+	k10Responses = [];
 	var allResponses = await client.patient.request("QuestionnaireResponse", { flat: true });
 	console.log(allResponses);
 	allResponses.forEach((item) => {
@@ -225,14 +228,16 @@ async function initPage(client) {
 		return;
 	}
 
-	// TODO: Sort by date questionnaire was taken
+	// Sort by date questionnaire was taken
+	sortQuestionnaireResponsesByDate(k10Responses);
+	// Cannot change order from here (yes it's not good code but I don't have time to do it properly)
 	
-	// TODO: Handle the case for multiple k10 questionnaire responses (remember to handle questionnaire taken date, and the case where there is no date)
+	// TODO: Handle the case for multiple k10 questionnaire responses
 	if (k10Responses.length > 1) {
 		// Create drop down HTML
 		var dropDownHtml = "";
-		k10Responses.forEach((item) => {
-			var html = `<button class="dropdown-item">`;
+		k10Responses.forEach((item, index) => {
+			var html = `<button class="dropdown-item" data-index="${index}">`;
 			if (item.authored) {
 				html += htmlEntities(item.authored);
 			} else {
@@ -245,12 +250,35 @@ async function initPage(client) {
 		$(".previous-versions-dropdown .dropdown-menu").html(dropDownHtml);
 	}
 	
-	// Use the most recent questionnaire response by default
-	var mostRecentResponse = k10Responses[k10Responses.length - 1];
+	// Use the most recent questionnaire (with a known authored date) response by default
+	var mostRecentResponse = k10Responses[k10Responses.length - 1]; // Default to show the last questionnaire if no date found
+	for (var i = k10Responses.length - 1; i >= 0; i--) {
+		var response = k10Responses[i];
+		if (response.authored) {
+			mostRecentResponse = k10Responses[i];
+			break;
+		}
+	}
 	handleQuestionnaireResponse(mostRecentResponse);
 	displayUserResponse(mostRecentResponse, "/resources/K10_kessler_psychological_distress_scale.json", "questionnaireResponse");
+
+	// Set current questionnaire as active in the dropdown
+	var indexOfCurrent = k10Responses.indexOf(mostRecentResponse);
+	$(`.previous-versions-dropdown .dropdown-item[data-index="${indexOfCurrent}"]`).addClass("active");
 	
 	// Set comparison data
 	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
 
 }
+
+$(document).ready(function() {
+
+	$(".previous-versions-dropdown").on("click", ".dropdown-item", function() {
+		var response = k10Responses[$(this).first().attr("data-index")];
+		handleQuestionnaireResponse(response);
+		displayUserResponse(response, "/resources/K10_kessler_psychological_distress_scale.json", "questionnaireResponse");
+		$(".previous-versions-dropdown .dropdown-item").removeClass("active");
+		$(this).addClass("active");
+	});
+
+});
