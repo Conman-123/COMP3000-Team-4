@@ -32,31 +32,39 @@
             <img id="loader" src="/img/loading.gif" alt="loading">
             <div class="mt-4">Fetching Questionnaires...</div>
         </div>
-        <div class="list-group mt-3" id="questionnaire-list-group" style="display: none;">
+        <div id="questionnaire-list-group-container" class="container px-0" style="display: none;">
+            <div class="list-group mt-3 left" id="questionnaire-list-group">
 
-            <a href="/K10Dashboard.html" id="k10-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
-              <div class="d-flex w-100 justify-content-between align-items-center">
-                <h5 class="mb-0">K10 Kessler Psychological Distress Scale</h5>
-                <span class="badge badge-primary ml-3" id="k10-num-responses">0</span>
-              </div>
-            </a>
-
-            <a href="/PHQ9Dashboard.html" id="phq9-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
+                <a href="/K10Dashboard.html" id="k10-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
                 <div class="d-flex w-100 justify-content-between align-items-center">
-                  <h5 class="mb-0">PHQ-9 Patient Health Questionnaire 9</h5>
-                  <span class="badge badge-primary ml-3" id="phq9-num-responses">0</span>
+                    <h5 class="mb-0">K10 Kessler Psychological Distress Scale</h5>
+                    <span class="badge badge-primary ml-3" id="k10-num-responses">0</span>
                 </div>
-            </a>
+                </a>
 
-            <a href="/AUSDRISKDashboard.html" id="ausdrisk-link" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
-                <div class="d-flex w-100 justify-content-between align-items-center">
-                  <h5 class="mb-0">AUSDRISK Australian Type 2 Diabetes Risk Assessment Tool</h5>
-                  <span class="badge badge-primary ml-3" id="ausdrisk-num-responses">0</span>
-                </div>
-            </a>
+                <a href="/PHQ9Dashboard.html" id="phq9-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                    <h5 class="mb-0">PHQ-9 Patient Health Questionnaire 9</h5>
+                    <span class="badge badge-primary ml-3" id="phq9-num-responses">0</span>
+                    </div>
+                </a>
 
-          </div>
-          <div id="list-message"></div>
+                <a href="/AUSDRISKDashboard.html" id="ausdrisk-link" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                    <h5 class="mb-0">AUSDRISK Australian Type 2 Diabetes Risk Assessment Tool</h5>
+                    <span class="badge badge-primary ml-3" id="ausdrisk-num-responses">0</span>
+                    </div>
+                </a>
+
+            </div>
+            
+            <div class="list-group mt-3 right">
+                <button class="list-group-item list-group-item-action" type="button">Do questionnaire</button>
+                <button class="list-group-item list-group-item-action" type="button">Do questionnaire</button>
+                <button class="list-group-item list-group-item-action" type="button" disabled>Do questionnaire</button>
+            </div>
+        </div>
+        <div id="list-message"></div>
     </div>
 </body>
 

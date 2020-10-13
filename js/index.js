@@ -33,7 +33,7 @@ function processQuestionnaireResponses(responses) {
 
     // Hide loader and show questionnaire list
     $("#loader-container").hide();
-    $("#questionnaire-list-group").show();
+    $("#questionnaire-list-group-container").show();
 }
 
 $(document).ready(function () {
