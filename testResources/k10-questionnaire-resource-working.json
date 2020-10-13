@@ -60,7 +60,7 @@
             ]
         }
     },
-    "url": "http://hl7.org/fhir/Questionnaire/K10_kessler_psychological_distress_scale",
+    "url": "https://connect4.uqcloud.net/resources/K10_kessler_psychological_distress_scale.json",
     "version": "1.0",
     "name": "K10_kessler_psychological_distress_scale",
     "title": "K10 Kessler Psychological Distress Scale",

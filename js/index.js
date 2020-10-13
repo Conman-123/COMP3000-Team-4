@@ -6,9 +6,9 @@ function processQuestionnaireResponses(responses) {
     var phq9Responses = [];
     var otherResponses = [];
     responses.forEach((item, index) => {
-        if (item.questionnaire === "https://connect4.uqcloud.net/resources/K10_kessler_psychological_distress_scale.json") {
+        if (isQuestionnaireResponseK10(item)) {
             k10Responses.push(item);
-        } else if (item.questionnaire === "https://connect4.uqcloud.net/resources/PHQ_9_Patient_Health_Questionnaire_9.json") {
+        } else if (isQuestionnaireResponsePHQ9(item)) {
             phq9Responses.push(item);
         } else {
             otherResponses.push(item);
@@ -36,16 +36,7 @@ function processQuestionnaireResponses(responses) {
     $("#questionnaire-list-group-container").show();
 }
 
-$(document).ready(function () {
-
-    const client = FHIR.client({
-        serverUrl: "http://hapi.fhir.org/baseR4",
-        tokenResponse: {
-            patient: "1303022"
-        }
-    });
-
+function initPage(client) {
     // Search for QuestionnaireResponses linked to this patient, returning just the array of bundle entries (rather than a bundle object)
     client.patient.request("QuestionnaireResponse", { flat: true }).then(processQuestionnaireResponses).catch(console.error);
-
-});
+}

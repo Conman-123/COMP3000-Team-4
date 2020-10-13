@@ -168,17 +168,10 @@ function display(data) {
 	displayQuestionnaire(questions, null, "questionnaire");
 }
 
-$(document).ready(function () {
 
-	$("#whatever").text("Loading...");
-
+function oldTestingInitPage() {
 	// Set comparison data
 	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
-
-	//const client = new FHIR.client("http://hapi.fhir.org/baseR4");
-	//data = client.request("Questionnaire/MDS3.0-SP-1.14")
-	//	.then(display)
-	//	.catch(display);
 
 	// Test displaying K10 questionnaire
 	$.ajax({
@@ -215,5 +208,33 @@ $(document).ready(function () {
 		window.location.replace("results.html");
 
 	});
+}
 
-});
+async function initPage(client) {
+	// Get all of this patient's K10 questionnaire responses
+	var k10Responses = [];
+	var allResponses = await client.patient.request("QuestionnaireResponse", { flat: true });
+	console.log(allResponses);
+	allResponses.forEach((item) => {
+		if (isQuestionnaireResponseK10(item)) k10Responses.push(item);
+	});
+
+	if (k10Responses.length === 0) {
+		console.error("No K10 questionnaire found");
+		// TODO: Handle no k10 questionnaire responses (show a message to the user, with the option to complete a new questionnaire response)
+		return;
+	}
+
+	// TODO: Handle the case for multiple k10 questionnaire responses (remember to handle questionnaire taken date, and the case where there is no date)
+
+	// TODO: Sort by date questionnaire was taken
+	
+	// Use the most recent questionnaire response by default
+	var mostRecentResponse = k10Responses[k10Responses.length - 1];
+	handleQuestionnaireResponse(mostRecentResponse);
+	displayUserResponse(mostRecentResponse, "/resources/K10_kessler_psychological_distress_scale.json", "questionnaireResponse");
+	
+	// Set comparison data
+	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
+
+}
