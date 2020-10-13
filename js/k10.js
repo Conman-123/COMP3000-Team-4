@@ -225,9 +225,25 @@ async function initPage(client) {
 		return;
 	}
 
-	// TODO: Handle the case for multiple k10 questionnaire responses (remember to handle questionnaire taken date, and the case where there is no date)
-
 	// TODO: Sort by date questionnaire was taken
+	
+	// TODO: Handle the case for multiple k10 questionnaire responses (remember to handle questionnaire taken date, and the case where there is no date)
+	if (k10Responses.length > 1) {
+		// Create drop down HTML
+		var dropDownHtml = "";
+		k10Responses.forEach((item) => {
+			var html = `<button class="dropdown-item">`;
+			if (item.authored) {
+				html += htmlEntities(item.authored);
+			} else {
+				html += "Date Unknown (ID " + htmlEntities(item.id) + ")";
+			}
+			html += "</button>";
+			dropDownHtml += html;
+		});
+		// Add drop down html to the "Previous Versions" dropdown
+		$(".previous-versions-dropdown .dropdown-menu").html(dropDownHtml);
+	}
 	
 	// Use the most recent questionnaire response by default
 	var mostRecentResponse = k10Responses[k10Responses.length - 1];

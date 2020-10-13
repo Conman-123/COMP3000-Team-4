@@ -8,6 +8,10 @@ function isQuestionnaireResponsePHQ9(response) {
     return response.questionnaire === "https://connect4.uqcloud.net/resources/PHQ_9_Patient_Health_Questionnaire_9.json"
 }
 
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 $(document).ready(function () {
     // Use this block while testing with an open FHIR server
     const client = FHIR.client({

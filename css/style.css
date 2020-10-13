@@ -29,6 +29,11 @@ body {
 	background-color: #eee;
 }
 
+/*------------------- Previous responses dropdown -------------------*/
+.previous-versions-dropdown .dropdown-menu {
+	min-width: 100%;
+}
+
 /*------------------- Questionnaire Display -------------------*/
 div[class^="row questionnaire-row"] {
 	padding: 10px;
