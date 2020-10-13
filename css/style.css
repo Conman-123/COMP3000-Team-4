@@ -3,258 +3,258 @@
 }
 
 body {
-    font-family: Montserrat, sans-serif;
+	font-family: Montserrat, sans-serif;
 }
 
 .score-overview-container h1, .next-steps-container h1 {
-    font-size: 30px;
+	font-size: 30px;
 }
 
 .score_breakdowns h2, .normative-data h2, .previous-score-container h2, .previous-score-phq9-container h2 {
-    font-size: 25px;
+	font-size: 25px;
 }
 
 .normative-data h2, .previous-score-container h2 {
-    text-align: center;
+	text-align: center;
 }
 
 /*------------------- Questionnaire List Group -------------------*/
 #questionnaire-list-group .list-group-item.disabled, #questionnaire-list-group .list-group-item:disabled {
-    background-color: #eee;
+	background-color: #eee;
 }
 
 /*------------------- Questionnaire Display -------------------*/
 div[class^="row questionnaire-row"] {
-    padding: 10px;
-    display: flex;
+	padding: 10px;
+	display: flex;
 }
 
 .answer-col {
-    display: flex;
+	display: flex;
 }
 
 .answer-col > * {
-    display: inline-block;
-    text-align: center;
-    flex: 1 1 0px;
+	display: inline-block;
+	text-align: center;
+	flex: 1 1 0px;
 }
 
 .answer-col .form-check, .answer-col {
-    margin: 0;
+	margin: 0;
 }
 
 /*------------------- Scales -------------------*/
 .scale {
-    position: relative;
+	position: relative;
 }
 
 .scale-marker, #breakdown-question9-container, #breakdown-question10-container {
-    position: absolute;
-    border-radius: 100px;
-    text-align: center;
-    background-color: #043A5E;
-    color: white;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	position: absolute;
+	border-radius: 100px;
+	text-align: center;
+	background-color: #043A5E;
+	color: white;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 }
 
 /*------------------- Content Boxes -------------------*/
 .content-box {
-    background-color: #989898;
-    color: white;
-    border-radius: 3px;
-    padding: 15px 20px;
+	background-color: #989898;
+	color: white;
+	border-radius: 3px;
+	padding: 15px 20px;
 }
 
 
 /*------------------- Score Overview  -------------------*/
 #good-block, #mild-block, #moderate-block, #moderately-severe-block, #slightly-high-block, #high-block, #severe-block {
-    height: 80px;
+	height: 80px;
 }
 
 #overall-score-container {
-    height: 60px;
-    margin: 10px 0;
-    font-size: 18px;
-    line-height: 1.2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 30px;
+	height: 60px;
+	margin: 10px 0;
+	font-size: 18px;
+	line-height: 1.2;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 30px;
 }
 
 .block-label {
-    font-size: 1.1em;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 3px;
+	font-size: 1.1em;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 3px;
 }
 
 #blocks .col {
-    /* Allow the blocks to shrink as much as needed to keep their proportions even when the text doesn't fit */
-    min-width: 0;
-    min-height: 0;
+	/* Allow the blocks to shrink as much as needed to keep their proportions even when the text doesn't fit */
+	min-width: 0;
+	min-height: 0;
 }
 
 /*------------------- Data Analysis -------------------*/
 .data-analysis-content {
-    display: none;
+	display: none;
 }
 
 
 
 /*------------------- Compare Against Previous Scores -------------------*/
 .previous-score-container {
-    padding: 15px 30px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;    
-    min-height: 400px;
-    max-height: 100%;
+	padding: 15px 30px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;    
+	min-height: 400px;
+	max-height: 100%;
 }
 
 .previous-score-phq9-container {
-    padding: 15px 30px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
+	padding: 15px 30px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	max-height: 100%;
 }
 
 #previous-scores-graph-container {
-    flex-grow: 1;
-    padding: 20px;
-    padding-bottom: 10px;
+	flex-grow: 1;
+	padding: 20px;
+	padding-bottom: 10px;
 }
 
 .previous-score-phq9-container #previous-scores-graph-container {
-    padding: 10px 0;
+	padding: 10px 0;
 }
 
 /*------------------- Score in comparison to normative data Section -------------------*/
 .normative-data {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 #good-block-breakdown, #mild-block-breakdown, #moderate-block-breakdown, #moderately-severe-block-breakdown, #severe-block-breakdown {
-    height: 50px;
+	height: 50px;
 }
 
 #breakdown-score-container, #breakdown2-score-container, #breakdown3-score-container {
-    height: 30px;
-    width: 40px;
-    margin-top: 10px;
+	height: 30px;
+	width: 40px;
+	margin-top: 10px;
 }
 
 /*------------------- Question Breakdowns -------------------*/
 .question_breakdowns {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 .question_breakdowns h2 {
-    padding-top: 35px;
+	padding-top: 35px;
 }
 
 .question_breakdowns h3 {
-    padding-top: 15px;
+	padding-top: 15px;
 }
 
 .question_breakdowns p {
-    font-size: 0.85em;
+	font-size: 0.85em;
 }
 
 #info-question9 p {
-    margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 h3 {
-    font-size:  1.1em;
-    font-weight: bold;
+	font-size:  1.1em;
+	font-weight: bold;
 }
 
 .breakdown-block1, .breakdown-block2, .breakdown-block3, .breakdown-block4 {
-    width: 75px;
-    height: 50px;
+	width: 75px;
+	height: 50px;
 }
 
 .question_breakdowns .flex-row {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 #breakdown-question9-container, #breakdown-question10-container {
-    height: 30px;
-    width: 40px;
-    margin-top: 10px;
+	height: 30px;
+	width: 40px;
+	margin-top: 10px;
 }
 
 
 /*------------------- Possible Next Steps Section -------------------*/
 .next-steps {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .next-steps h1 {
-    font-size: 30px;
+	font-size: 30px;
 }
 
 .next-steps-content {
-    display: none;
-    padding-left: 30px;
+	display: none;
+	padding-left: 30px;
 }
 
 /*------------------- Coloured Blocks Representing Scores -------------------*/
 #good-block, #good-block-breakdown, .breakdown-block1 {
-    background-color: #99C63E;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+	background-color: #99C63E;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 }
 #good-block-container, #good-block-breakdown, .breakdown-block1 {
-    flex-grow: 10; /* Set size relative to other blocks (here using the range of score values as the ratio) */
+	flex-grow: 10; /* Set size relative to other blocks (here using the range of score values as the ratio) */
 }
 
 #mild-block, #mild-block-breakdown,.breakdown-block2 {
-    background-color: #F6DD0B;
+	background-color: #F6DD0B;
 }
 #mild-block-container, #mild-block-breakdown, .breakdown-block2 {
-    flex-grow: 5;
+	flex-grow: 5;
 }
 
 #moderate-block, #moderate-block-breakdown, .breakdown-block3 {
-    background-color: #E87000;
+	background-color: #E87000;
 }
 #moderate-block-container, #moderate-block-breakdown, .breakdown-block3 {
-    flex-grow: 5;
+	flex-grow: 5;
 }
 
 #moderately-severe-block, #moderately-severe-block-breakdown {
-    background-color: #d1410d;
+	background-color: #d1410d;
 }
 #moderately-severe-block-container, #moderately-severe-block-breakdown {
-    flex-grow: 5;
+	flex-grow: 5;
 }
 
 #slightly-high-block, #slightly-high-block-breakdown{
-    background-color: #FF5500;
+	background-color: #FF5500;
 }
 
 #slightly-high-block-container, #slightly-high-block-breakdown {
-    flex-grow: 5;
+	flex-grow: 5;
 }
 
 #high-block, #high-block-breakdown {
-    background-color: #FF0000;
+	background-color: #FF0000;
 }
 
 #high-block-container, #high-block-breakdown {
-    flex-grow: 5;
+	flex-grow: 5;
 }
 
 #severe-block, #severe-block-breakdown, .breakdown-block4 {
-    background-color: #C42A26;
-    border-top-right-radius: 3px;    
-    border-bottom-right-radius: 3px;
+	background-color: #C42A26;
+	border-top-right-radius: 3px;    
+	border-bottom-right-radius: 3px;
 }
 #severe-block-container, #severe-block-breakdown, .breakdown-block4 {
-    flex-grow: 21;
+	flex-grow: 21;
 }
 
 
@@ -263,37 +263,37 @@ h3 {
 #phq9 #mild-block-container, #phq9 #mild-block-breakdown,
 #phq9 #moderate-block-container, #phq9 #moderate-block-breakdown,
 #phq9 #moderately-severe-block-container, #moderately-severe-block-breakdown  {
-    flex-grow: 5; /* Set size relative to other blocks (here using the range of score values as the ratio) */
+	flex-grow: 5; /* Set size relative to other blocks (here using the range of score values as the ratio) */
 }
 
 #phq9 #severe-block-container, #phq9 #severe-block-breakdown {
-    flex-grow: 8;
+	flex-grow: 8;
 }
 
 /*------------------- Score Container -------------------*/
 
 @media only screen and (max-width: 400px) {
-    #blocks {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+	#blocks {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
 }
 
-/* K-10 Form and Response*/
+/*Form and Response display*/
 
 #col-label span {
-    margin: 0 2.5%;
+	margin: 0 2.5%;
 }
 
 .question-label {
-    background-color: #669acb;
-    font-weight: bold;
-    color: white;
+	background-color: #669acb;
+	font-weight: bold;
+	color: white;
 }
 
 .question-col {
-    margin: auto;
-    color: #389ccb;
+	margin: auto;
+	color: #389ccb;
 }
 
 .questionnaire-row-0 {
@@ -301,50 +301,80 @@ h3 {
 }
 
 .questionnaire-row-1 {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
 .form-check-inline {
-    margin: auto !important;
+	margin: auto !important;
 }
 
 .form-check-input {
-    display: none;
-    margin: 0;
+	display: none;
+	margin: 0;
 }
 
 .form-check-inline span {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid black;
-    background-repeat: no-repeat;
-    background-position: center;
-    text-align: center;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid black;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
 }
 
 .form-check-input + span img {
-    opacity: 0;
-    display: block;
-    width: 15px;
-    height: 15px;
-    margin: auto;
-    transition: all 0.3s ease;
+	opacity: 0;
+	display: block;
+	width: 15px;
+	height: 15px;
+	margin: auto;
+	transition: all 0.3s ease;
 }
 
 .form-check-input:checked + span img {
-    opacity: 1;
+	opacity: 1;
 }
 
 .submit-button {
-    background-color: #1c5c77;
-    border: 1px solid #1c5c77;
-    border-radius: 0;
-    font-weight: bold;
+	background-color: #1c5c77;
+	border: 1px solid #1c5c77;
+	border-radius: 0;
+	font-weight: bold;
 }
 
 #questionnaireResponse {
-    margin-bottom: 5%
+	margin-bottom: 5%
+}
+
+.do-questionnaire {
+	background-color: #1c5c77;
+	border: 1px solid #1c5c77;
+	border-radius: 0;
+	font-weight: bold;
+	color: white;
+}
+
+.left {
+	display: inline-block;
+	width: 80%;
+}
+
+.left .list-group-item {
+	border-right: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.right {
+	width: 20%;
+	float: right;
+}
+
+.right .list-group-item {
+	text-align: center;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
 }

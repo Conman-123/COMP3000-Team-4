@@ -27,7 +27,8 @@
     <h1><a href="/index.html" class="nav-link text-dark">Connect 4 SMART on FHIR App</a></h1>
     <div class="container d-flex flex-column justify-content-center">
         <h2 class="mt-5">Select a Questionnaire</h2>
-        <div class="list-group mt-3" id="questionnaire-list-group">
+        <div class="container">
+        <div class="list-group mt-3 left" id="questionnaire-list-group">
 
             <a href="/K10Dashboard.html" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between align-items-center">
@@ -51,6 +52,13 @@
             </a>
 
           </div>
+
+        <div class="list-group mt-3 right">
+            <button class="list-group-item list-group-item-action" type="button">Do questionnaire</button>
+            <button class="list-group-item list-group-item-action" type="button">Do questionnaire</button>
+            <button class="list-group-item list-group-item-action" type="button" disabled>Do questionnaire</button>
+        </div>
+    </div>
     </div>
 </body>
 
