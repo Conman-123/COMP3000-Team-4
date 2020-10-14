@@ -103,6 +103,12 @@ function handlePreviousScores(allOrderedResponses, currentResponse, maxPossibleS
 	});
 }
 
+function postQuestionnaireResponse(client, response) {
+    var resultResource = client.create(response).catch(console.error);
+    // Returns true on success, false otherwise
+    return resultResource?.resourceType === "QuestionnaireResponse";
+}
+
 $(document).ready(function () {
     // Use this block while testing with an open FHIR server
     const client = FHIR.client({
