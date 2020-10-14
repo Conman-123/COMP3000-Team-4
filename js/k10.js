@@ -118,7 +118,7 @@ async function initPage(client) {
 
 	if (k10Responses.length === 0) {
 		console.error("No K10 questionnaire responses found");
-		// TODO: Handle no k10 questionnaire responses (show a message to the user, with the option to complete a new questionnaire response)
+		$("#error-modal").modal("show");
 		return;
 	}
 

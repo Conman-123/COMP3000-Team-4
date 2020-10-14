@@ -172,8 +172,8 @@ async function initPage(client) {
 	});
 
 	if (phq9Responses.length === 0) {
-		console.error("No PHQ9 questionnaire responses found");
-		// TODO: Handle no PHQ9 questionnaire responses (show a message to the user, with the option to complete a new questionnaire response)
+		console.error("No PHQ9 questionnaire responses found");		
+		$("#error-modal").modal("show");
 		return;
 	}
 
