@@ -18,9 +18,20 @@ body {
 	text-align: center;
 }
 
+/*------------------- Loader -------------------*/
+#loader {
+    width: 150px;
+    max-width: 100%;
+}
+
 /*------------------- Questionnaire List Group -------------------*/
 #questionnaire-list-group .list-group-item.disabled, #questionnaire-list-group .list-group-item:disabled {
 	background-color: #eee;
+}
+
+/*------------------- Previous responses dropdown -------------------*/
+.previous-versions-dropdown .dropdown-menu {
+	min-width: 100%;
 }
 
 /*------------------- Questionnaire Display -------------------*/
@@ -148,10 +159,6 @@ div[class^="row questionnaire-row"] {
 /*------------------- Question Breakdowns -------------------*/
 .question_breakdowns {
 	margin-left: 20px;
-}
-
-.question_breakdowns h2 {
-	padding-top: 35px;
 }
 
 .question_breakdowns h3 {

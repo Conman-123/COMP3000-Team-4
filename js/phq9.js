@@ -6,17 +6,6 @@ const LOINC_ANSWER_CODE_SCORES = {
 	"LA6571-9": 3
 }
 
-// Chart.js plugin to set chart area background color. Retrieved from https://github.com/chartjs/Chart.js/issues/3479
-Chart.plugins.register({
-	beforeDraw: function (chartInstance, easing) {
-		var ctx = chartInstance.chart.ctx;
-		ctx.fillStyle = '#eee'; // Set background colour here
-
-		var chartArea = chartInstance.chartArea;
-		ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-	}
-});
-
 function getPHQ9WordScore(score) {
 	if (score < 5) {
 		return "good";
@@ -81,63 +70,6 @@ function setNextSteps(score) {
 	$(".next-steps-" + getPHQ9WordScore(score)).show();
 }
 
-function handlePreviousScores(currentScore) {
-	// TODO: implement properly
-	var dateArray = ["2019-06-24", "2020-08-16 (current)"];
-	var scoreArray = [17, currentScore];
-	// Create array of background colors for the bars so the current bar can be a different colour
-	var barColors = [];
-	// TODO: Change this to loop through all past questionnaires, and set the **CURRENT** questionnaire as the other colour NOT just the last one (cause might be viewing a past questionnaire)
-	dateArray.forEach(function(val, index) {
-		if (index === (dateArray.length - 1)) {
-			barColors.push("#0573a4");
-		} else {
-			barColors.push("#043a5e");
-		}
-	});
-
-	var graphContext = document.getElementById("previous-scores-graph").getContext("2d");
-	var graph = new Chart(graphContext, {
-		type: "bar",
-		data: {
-			labels: dateArray,
-			datasets: [{
-				backgroundColor: "#043a5e",
-				data: scoreArray,
-				backgroundColor: barColors ? barColors : "#043a5e"
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			/*aspectRatio: 1.5,*/
-			scales: {
-				yAxes: [{
-					type: "linear",
-					ticks: {
-						min: 0,
-						max: 27,
-						fontColor: "#ffffff"
-					},
-					gridLines: {
-						display: false
-					}
-				}],
-				xAxes: [{
-					ticks: {
-						fontColor: "#ffffff"
-					},
-					gridLines: {
-						display: false
-					}
-				}]
-			},
-			legend: {
-				display: false
-			}
-		}
-	});
-}
-
 function getItemScores(item) {
 	var scores = [];
 	if (item.linkId === "2") {
@@ -161,21 +93,20 @@ function getItemScores(item) {
 	return scores;
 }
 
-function handleQuestionnaireResponse(responseJson) {
-	var scores = getItemScores(responseJson);
-
-	// Calculate and display total score
-	var totalScore = scores.reduce((total, value) => total + value);
-	setScoreScale(totalScore);
+function handleQuestionnaireResponseAndScore(responseAndScore) {
+	setScoreScale(responseAndScore.score);
 
 	// Set relevant data analysis
-	setDataAnalysis(totalScore);
+	setDataAnalysis(responseAndScore.score);
 
 	// Set relevant next steps
-	setNextSteps(totalScore);
+	setNextSteps(responseAndScore.score);
+}
 
-	// Handle Previous Scores
-	handlePreviousScores(totalScore);
+function calculateQuestionnaireScore(responseJson) {
+	var scores = getItemScores(responseJson);
+	var totalScore = scores.reduce((total, value) => total + value);
+	return totalScore;
 }
 
 function display(data) {
@@ -185,17 +116,9 @@ function display(data) {
 	displayQuestionnaire(questions, null, "questionnaire");
 }
 
-$(document).ready(function () {
-
-	$("#whatever").text("Loading...");
-
+function oldInitPage() {
 	// Set comparison data
 	setNormativeScoreScale(5); // TEMPORARY!!!! TODO: CHANGE THIS
-
-	//const client = new FHIR.client("http://hapi.fhir.org/baseR4");
-	//data = client.request("Questionnaire/MDS3.0-SP-1.14")
-	//	.then(display)
-	//	.catch(display);
 
 	// Test displaying PHQ-9 questionnaire
 	$.ajax({
@@ -220,7 +143,6 @@ $(document).ready(function () {
 		}
 	});
 
-
 	$("#questionnaire").submit(function (event) {
 		$.ajax({
 			type: "POST",
@@ -231,8 +153,95 @@ $(document).ready(function () {
 			contentType: "application/json"
 		});
 
-
 		event.preventDefault();
+	});
+}
+
+// -- GLOBALS --
+var phq9Responses;
+var phq9ResponsesAndScores = [];
+var graph;
+
+async function initPage(client) {
+	// Get all of this patient's PHQ9 questionnaire responses
+	phq9Responses = [];
+	var allResponses = await client.patient.request("QuestionnaireResponse", { flat: true });
+	console.log(allResponses);
+	allResponses.forEach((item) => {
+		if (isQuestionnaireResponsePHQ9(item)) phq9Responses.push(item);
+	});
+
+	if (phq9Responses.length === 0) {
+		console.error("No PHQ9 questionnaire responses found");		
+		$("#error-modal").modal("show");
+		return;
+	}
+
+	// Sort by date questionnaire was taken
+	sortQuestionnaireResponsesByDate(phq9Responses);
+	// Cannot change order from here (yes it's not good code but I don't have time to do it properly)
+
+	// Handle the case for multiple phq9 questionnaire responses
+	if (phq9Responses.length > 1) {
+		// Create drop down HTML
+		var dropDownHtml = "";
+		phq9Responses.forEach((item, index) => {
+			var html = `<button class="dropdown-item" data-index="${index}">`;
+			if (item.authored) {
+				html += htmlEntities(item.authored);
+			} else {
+				html += "Date Unknown (ID " + htmlEntities(item.id) + ")";
+			}
+			html += "</button>";
+			dropDownHtml += html;
+		});
+		// Add drop down html to the "Previous Versions" dropdown
+		$(".previous-versions-dropdown .dropdown-menu").html(dropDownHtml);
+	}
+
+	// Loop through responses and calculate scores
+	for (var i = 0; i < phq9Responses.length; i++) {
+		var score = calculateQuestionnaireScore(phq9Responses[i]);
+		phq9ResponsesAndScores.push({
+			score: score,
+			response: phq9Responses[i]
+		});
+	}
+
+	// Use the most recent questionnaire (with a known authored date) response by default
+	var mostRecentResponseAndScore = phq9ResponsesAndScores[phq9ResponsesAndScores.length - 1]; // Default to show the last questionnaire if no date found
+	for (var i = phq9ResponsesAndScores.length - 1; i >= 0; i--) {
+		var response = phq9ResponsesAndScores[i].response;
+		if (response.authored) {
+			mostRecentResponseAndScore = phq9ResponsesAndScores[i];
+			break;
+		}
+	}
+	handleQuestionnaireResponseAndScore(mostRecentResponseAndScore);
+	displayUserResponse(mostRecentResponseAndScore.response, "/resources/PHQ_9_Patient_Health_Questionnaire_9.json", "questionnaireResponse");
+
+	// Set current questionnaire as active in the dropdown
+	var indexOfCurrent = phq9ResponsesAndScores.indexOf(mostRecentResponseAndScore);
+	$(`.previous-versions-dropdown .dropdown-item[data-index="${indexOfCurrent}"]`).addClass("active");
+
+	// Populate Previous Scores Graph
+	handlePreviousScores(phq9ResponsesAndScores, mostRecentResponseAndScore, 27);
+	
+	// Set comparison data
+	setNormativeScoreScale(5); // TEMPORARY!!!! TODO: CHANGE THIS
+}
+
+$(document).ready(function() {
+
+	$(".previous-versions-dropdown").on("click", ".dropdown-item", function() {
+		var responseAndScore = phq9ResponsesAndScores[$(this).first().attr("data-index")];
+		handleQuestionnaireResponseAndScore(responseAndScore);
+		displayUserResponse(responseAndScore.response, "/resources/PHQ_9_Patient_Health_Questionnaire_9.json", "questionnaireResponse");
+		// Update Previous Scores Graph
+		handlePreviousScores(phq9ResponsesAndScores, responseAndScore, 27);
+		// Make this questionnaire response active in the dropdown		
+		$(".previous-versions-dropdown .dropdown-item").removeClass("active");
+		$(this).addClass("active");
 	});
 
 });

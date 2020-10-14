@@ -18,9 +18,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
         crossorigin="anonymous"></script>
-    <!-- TOOD: Include site.js again once the k10 code has been separated out into its own file -->
     <script src="js/questionnaireDisplay.js"></script>
     <script src="js/phq9.js"></script>
+    <script src="js/site.js"></script>
 </head>
 
 <body id="phq9">
@@ -34,6 +34,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#nav-responses">Questionnaire Responses</a>
+                </li>
+                <li class="previous-versions-dropdown nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Previous Responses</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item">No Other responses</button>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -121,14 +127,14 @@
                                 <div class="col-md-6 mt-4 mt-md-0">
                                     <!--Compare Against Previous Scores Section-->
                                     <div class="previous-score-phq9-container content-box">
-                                        <h2>Compare Against Previous Scores</h2>
+                                        <h2>Previous Scores</h2>
                                         <div id="previous-scores-graph-container">
                                             <canvas id="previous-scores-graph"></canvas>                                    
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-4">
                                 <div class="col-sm-12">
                                     <!--Possible Next Steps Section-->
                                     <div class="next-steps content-box">
@@ -210,6 +216,24 @@
                     <div class="col-12">
                         <div class="mt-4" id="questionnaireResponse"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Responses Error Modal -->
+    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="error-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="error-modal-label">No PHQ-9 Responses Found</h5>
+                </div>
+                <div class="modal-body">
+                    No PHQ-9 questionnaire responses were found for this patient.
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="#">Complete a new questionnaire</a>
+                    <a class="btn btn-secondary" href="/index.html">Back to Home</a>
                 </div>
             </div>
         </div>

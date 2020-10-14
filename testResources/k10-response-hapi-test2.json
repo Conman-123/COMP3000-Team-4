@@ -1,0 +1,132 @@
+{
+	"resourceType" : "QuestionnaireResponse",
+	"questionnaire" : "https://connect4.uqcloud.net/resources/K10_kessler_psychological_distress_scale.json",
+	"status" : "completed",
+	"subject" : { 
+		"reference": "http://hapi.fhir.org/baseR4/Patient/1303022",
+		"type": "Patient"
+	},
+	"authored": "2020-02-17",
+	"item": [
+		{
+			"linkId": "1",
+			"text": "During the last 30 days, about how often did you feel tired out for no good reason?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14733-2"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "2",
+			"text": "During the last 30 days, about how often did you feel nervous?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14733-2"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "3",
+			"text": "During the last 30 days, about how often did you feel so nervous that nothing could calm you down?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14732-4"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "4",
+			"text": "During the last 30 days, about how often did you feel hopeless?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14732-4"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "5",
+			"text": "During the last 30 days, about how often did you feel restless or fidgety?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14733-2"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "6",
+			"text": "During the last 30 days, about how often did you feel so restless you could not sit still?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14734-0"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "7",
+			"text": "During the last 30 days, about how often did you feel depressed?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14732-4"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "8",
+			"text": "During the last 30 days, about how often did you feel that everything was an effort?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14734-0"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "9",
+			"text": "During the last 30 days, about how often did you feel so sad that nothing could cheer you up?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14732-4"
+					}
+				}
+			]
+		},
+		{
+			"linkId": "10",
+			"text": "During the last 30 days, about how often did you feel worthless?",
+			"answer": [
+				{
+					"valueCoding": {
+						"system": "http://loinc.org",
+						"code": "LA14732-4"
+					}
+				}
+			]
+		}
+	]
+}

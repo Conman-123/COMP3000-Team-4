@@ -9,16 +9,6 @@ const LOINC_ANSWER_CODE_SCORES = {
 	"LA6154-4": 5
 }
 
-Chart.plugins.register({
-	beforeDraw: function (chartInstance, easing) {
-		var ctx = chartInstance.chart.ctx;
-		ctx.fillStyle = '#eee'; // Set background colour here
-
-		var chartArea = chartInstance.chartArea;
-		ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-	}
-});
-
 function getk10WordScore(score) {
 	if (score < 20) {
 		return "good";
@@ -81,64 +71,17 @@ function setNextSteps(score) {
 	$(".next-steps-" + getk10WordScore(score)).show();
 }
 
-function handlePreviousScores(currentScore) {
-	// TODO: implement properly
-	var dateArray = ["2019-06-24", "2020-08-16 (current)"];
-	var scoreArray = [29, currentScore];
-	// Create array of background colors for the bars so the current bar can be a different colour
-	var barColors = [];
-	// TODO: Change this to loop through all past questionnaires, and set the **CURRENT** questionnaire as the other colour NOT just the last one (cause might be viewing a past questionnaire)
-	dateArray.forEach(function(val, index) {
-		if (index === (dateArray.length - 1)) {
-			barColors.push("#0573a4");
-		} else {
-			barColors.push("#043a5e");
-		}
-	});
+function handleQuestionnaireResponseAndScore(responseAndScore) {
+	setScoreScale(responseAndScore.score);
 
-	var graphContext = document.getElementById("previous-scores-graph").getContext("2d");
-	var graph = new Chart(graphContext, {
-		type: "bar",
-		data: {
-			labels: dateArray,
-			datasets: [{
-				backgroundColor: "#043a5e",
-				data: scoreArray,
-				backgroundColor: barColors ? barColors : "#043a5e"
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			/*aspectRatio: 1.5,*/
-			scales: {
-				yAxes: [{
-					type: "linear",
-					ticks: {
-						min: 0,
-						max: 50,
-						fontColor: "#ffffff"
-					},
-					gridLines: {
-						display: false
-					}
-				}],
-				xAxes: [{
-					ticks: {
-						fontColor: "#ffffff"
-					},
-					gridLines: {
-						display: false
-					}
-				}]
-			},
-			legend: {
-				display: false
-			}
-		}
-	});
+	// Set relevant data analysis
+	setDataAnalysis(responseAndScore.score);
+
+	// Set relevant next steps
+	setNextSteps(responseAndScore.score);
 }
 
-function handleQuestionnaireResponse(responseJson) {
+function calculateQuestionnaireScore(responseJson) {
 	var scores = [];
 	// Get scores for each answer
 	for (var i = 0; i < responseJson.item.length; i++) {
@@ -149,18 +92,9 @@ function handleQuestionnaireResponse(responseJson) {
 		}
 	}
 
-	// Calculate and display total score
+	// Calculate total score
 	var totalScore = scores.reduce((total, value) => total + value);
-	setScoreScale(totalScore);
-
-	// Set relevant data analysis
-	setDataAnalysis(totalScore);
-
-	// Set relevant next steps
-	setNextSteps(totalScore);
-
-	// Handle Previous Scores
-	handlePreviousScores(totalScore);
+	return totalScore;
 }
 
 function display(data) {
@@ -168,52 +102,92 @@ function display(data) {
 	displayQuestionnaire(questions, null, "questionnaire");
 }
 
-$(document).ready(function () {
+// -- GLOBALS --
+var k10Responses;
+var k10ResponsesAndScores = [];
+var graph;
 
-	$("#whatever").text("Loading...");
+async function initPage(client) {
+	// Get all of this patient's K10 questionnaire responses
+	k10Responses = [];
+	var allResponses = await client.patient.request("QuestionnaireResponse", { flat: true });
+	console.log(allResponses);
+	allResponses.forEach((item) => {
+		if (isQuestionnaireResponseK10(item)) k10Responses.push(item);
+	});
 
+	if (k10Responses.length === 0) {
+		console.error("No K10 questionnaire responses found");
+		$("#error-modal").modal("show");
+		return;
+	}
+
+	// Sort by date questionnaire was taken
+	sortQuestionnaireResponsesByDate(k10Responses);
+	// Cannot change order from here (yes it's not good code but I don't have time to do it properly)
+	
+	// Handle the case for multiple k10 questionnaire responses
+	if (k10Responses.length > 1) {
+		// Create drop down HTML
+		var dropDownHtml = "";
+		k10Responses.forEach((item, index) => {
+			var html = `<button class="dropdown-item" data-index="${index}">`;
+			if (item.authored) {
+				html += htmlEntities(item.authored);
+			} else {
+				html += "Date Unknown (ID " + htmlEntities(item.id) + ")";
+			}
+			html += "</button>";
+			dropDownHtml += html;
+		});
+		// Add drop down html to the "Previous Versions" dropdown
+		$(".previous-versions-dropdown .dropdown-menu").html(dropDownHtml);
+	}
+
+	// Loop through responses and calculate scores
+	for (var i = 0; i < k10Responses.length; i++) {
+		var score = calculateQuestionnaireScore(k10Responses[i]);
+		k10ResponsesAndScores.push({
+			score: score,
+			response: k10Responses[i]
+		});
+	}
+	
+	// Use the most recent questionnaire (with a known authored date) response by default
+	var mostRecentResponseAndScore = k10ResponsesAndScores[k10ResponsesAndScores.length - 1]; // Default to show the last questionnaire if no date found
+	for (var i = k10ResponsesAndScores.length - 1; i >= 0; i--) {
+		var response = k10ResponsesAndScores[i].response;
+		if (response.authored) {
+			mostRecentResponseAndScore = k10ResponsesAndScores[i];
+			break;
+		}
+	}
+	handleQuestionnaireResponseAndScore(mostRecentResponseAndScore);
+	displayUserResponse(mostRecentResponseAndScore.response, "/resources/K10_kessler_psychological_distress_scale.json", "questionnaireResponse");
+
+	// Set current questionnaire as active in the dropdown
+	var indexOfCurrent = k10ResponsesAndScores.indexOf(mostRecentResponseAndScore);
+	$(`.previous-versions-dropdown .dropdown-item[data-index="${indexOfCurrent}"]`).addClass("active");
+
+	// Populate Previous Scores Graph
+	handlePreviousScores(k10ResponsesAndScores, mostRecentResponseAndScore, 50);
+	
 	// Set comparison data
 	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
 
-	//const client = new FHIR.client("http://hapi.fhir.org/baseR4");
-	//data = client.request("Questionnaire/MDS3.0-SP-1.14")
-	//	.then(display)
-	//	.catch(display);
+}
 
-	// Test displaying K10 questionnaire
-	$.ajax({
-		url: "/testResources/k10-questionnaire-resource-working.json",
-		type: "GET",
-		success: function (data) {
-			display(data);
-		}
-	});
+$(document).ready(function() {
 
-	// Handle This Questionnaire Response (for now just use example)
-	$.ajax({
-		url: "/testResources/k10-response.json",
-		type: "GET",
-		success: function (data) {
-			handleQuestionnaireResponse(data);
-			displayUserResponse(data, "/testResources/k10-questionnaire-resource-working.json", "questionnaireResponse");
-		}
-	});
-
-	$("#questionnaire").submit(function (event) {
-		event.preventDefault();
-		results = $("#questionnaire").serializeArray();
-		$.ajax({
-			method: "POST",
-			url: "/js/questionnaire.php",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			data: JSON.stringify(results),
-			success: function (data) {
-			}
-		});
-
-		window.location.replace("results.html");
-
+	$(".previous-versions-dropdown").on("click", ".dropdown-item", function() {
+		var responseAndScore = k10ResponsesAndScores[$(this).first().attr("data-index")];
+		handleQuestionnaireResponseAndScore(responseAndScore);
+		displayUserResponse(responseAndScore.response, "/resources/K10_kessler_psychological_distress_scale.json", "questionnaireResponse");
+		// Update Previous Scores Graph
+		handlePreviousScores(k10ResponsesAndScores, responseAndScore, 50);
+		// Make this questionnaire response active in the dropdown		
+		$(".previous-versions-dropdown .dropdown-item").removeClass("active");
+		$(this).addClass("active");
 	});
 
 });
