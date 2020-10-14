@@ -9,16 +9,6 @@ const LOINC_ANSWER_CODE_SCORES = {
 	"LA6154-4": 5
 }
 
-Chart.plugins.register({
-	beforeDraw: function (chartInstance, easing) {
-		var ctx = chartInstance.chart.ctx;
-		ctx.fillStyle = '#eee'; // Set background colour here
-
-		var chartArea = chartInstance.chartArea;
-		ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-	}
-});
-
 function getk10WordScore(score) {
 	if (score < 20) {
 		return "good";
@@ -81,62 +71,6 @@ function setNextSteps(score) {
 	$(".next-steps-" + getk10WordScore(score)).show();
 }
 
-function handlePreviousScores(allOrderedResponses, currentResponse) {
-	var dateArray = [];
-	var scoreArray = [];
-	// Create array of background colors for the bars so the current bar can be a different colour
-	var barColors = [];
-	allOrderedResponses.forEach(function(val, index) {
-		var isCurrent = val === currentResponse;
-		var dateString = val.response.authored ? val.response.authored : `Date Unknown (ID ${item.id})`;
-		dateArray.push(isCurrent ? dateString + " (Current)" : dateString);
-		scoreArray.push(val.score);
-		barColors.push(isCurrent ? "#0573a4" : "#043a5e");
-	});
-
-	var graphContext = document.getElementById("previous-scores-graph").getContext("2d");
-	if (graph) graph.destroy(); // Reset the graph to fix bugs that were happening
-	graph = new Chart(graphContext, {
-		type: "bar",
-		data: {
-			labels: dateArray,
-			datasets: [{
-				backgroundColor: "#043a5e",
-				data: scoreArray,
-				backgroundColor: barColors ? barColors : "#043a5e"
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			/*aspectRatio: 1.5,*/
-			scales: {
-				yAxes: [{
-					type: "linear",
-					ticks: {
-						min: 0,
-						max: 50,
-						fontColor: "#ffffff"
-					},
-					gridLines: {
-						display: false
-					}
-				}],
-				xAxes: [{
-					ticks: {
-						fontColor: "#ffffff"
-					},
-					gridLines: {
-						display: false
-					}
-				}]
-			},
-			legend: {
-				display: false
-			}
-		}
-	});
-}
-
 function handleQuestionnaireResponseAndScore(responseAndScore) {
 	setScoreScale(responseAndScore.score);
 
@@ -183,7 +117,7 @@ async function initPage(client) {
 	});
 
 	if (k10Responses.length === 0) {
-		console.error("No K10 questionnaire found");
+		console.error("No K10 questionnaire responses found");
 		// TODO: Handle no k10 questionnaire responses (show a message to the user, with the option to complete a new questionnaire response)
 		return;
 	}
@@ -236,7 +170,7 @@ async function initPage(client) {
 	$(`.previous-versions-dropdown .dropdown-item[data-index="${indexOfCurrent}"]`).addClass("active");
 
 	// Populate Previous Scores Graph
-	handlePreviousScores(k10ResponsesAndScores, mostRecentResponseAndScore);
+	handlePreviousScores(k10ResponsesAndScores, mostRecentResponseAndScore, 50);
 	
 	// Set comparison data
 	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
@@ -250,7 +184,7 @@ $(document).ready(function() {
 		handleQuestionnaireResponseAndScore(responseAndScore);
 		displayUserResponse(responseAndScore.response, "/resources/K10_kessler_psychological_distress_scale.json", "questionnaireResponse");
 		// Update Previous Scores Graph
-		handlePreviousScores(k10ResponsesAndScores, responseAndScore);
+		handlePreviousScores(k10ResponsesAndScores, responseAndScore, 50);
 		// Make this questionnaire response active in the dropdown		
 		$(".previous-versions-dropdown .dropdown-item").removeClass("active");
 		$(this).addClass("active");

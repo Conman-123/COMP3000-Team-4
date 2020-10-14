@@ -26,7 +26,7 @@ function processQuestionnaireResponses(responses) {
     if (phq9Responses.length === 0) {
         $("#phq9-link").addClass("disabled");
     } else {
-        $("#k10-link").removeClass("disabled");
+        $("#phq9-link").removeClass("disabled");
     }
     console.log(`${otherResponses.length} other responses found:`);
     console.log(otherResponses);
