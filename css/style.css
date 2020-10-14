@@ -374,7 +374,12 @@ h3 {
 }
 
 .right .list-group-item {
+	font-weight: bold;
 	text-align: center;
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
+}
+
+.disabled-button {
+	background-color: #eee !important;
 }
