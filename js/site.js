@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-$(document).ready(function() {
-})
-=======
 function isQuestionnaireResponseK10(response) {
     if (!response) return false;
     return response.questionnaire === "https://connect4.uqcloud.net/resources/K10_kessler_psychological_distress_scale.json"
