@@ -35,35 +35,43 @@
         <div id="questionnaire-list-group-container" class="container px-0" style="display: none;">
             <div class="list-group mt-3 left" id="questionnaire-list-group">
 
-                <a href="/K10Dashboard.html" id="k10-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
-                <div class="d-flex w-100 justify-content-between align-items-center">
-                    <h5 class="mb-0">K10 Kessler Psychological Distress Scale</h5>
-                    <span class="badge badge-primary ml-3" id="k10-num-responses" title="Number of responses">0</span>
-                </div>
-                </a>
-
-                <a href="/PHQ9Dashboard.html" id="phq9-link" class="list-group-item list-group-item-action flex-column align-items-start disabled">
+                <a href="/K10Dashboard.html" id="k10-link"
+                    class="list-group-item list-group-item-action flex-column align-items-start disabled">
                     <div class="d-flex w-100 justify-content-between align-items-center">
-                    <h5 class="mb-0">PHQ-9 Patient Health Questionnaire 9</h5>
-                    <span class="badge badge-primary ml-3" id="phq9-num-responses" title="Number of responses">0</span>
+                        <h5 class="mb-0">K10 Kessler Psychological Distress Scale</h5>
+                        <span class="badge badge-primary ml-3" id="k10-num-responses"
+                            title="Number of responses">0</span>
                     </div>
                 </a>
 
-                <a href="/AUSDRISKDashboard.html" id="ausdrisk-link" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
+                <a href="/PHQ9Dashboard.html" id="phq9-link"
+                    class="list-group-item list-group-item-action flex-column align-items-start disabled">
                     <div class="d-flex w-100 justify-content-between align-items-center">
-                    <h5 class="mb-0">AUSDRISK Australian Type 2 Diabetes Risk Assessment Tool</h5>
-                    <span class="badge badge-primary ml-3" id="ausdrisk-num-responses" title="Number of responses">0</span>
+                        <h5 class="mb-0">PHQ-9 Patient Health Questionnaire 9</h5>
+                        <span class="badge badge-primary ml-3" id="phq9-num-responses"
+                            title="Number of responses">0</span>
                     </div>
                 </a>
 
-        <div class="list-group mt-3 right">
-            <button class="list-group-item list-group-item-action" id="k10" type="button">Do K10</button>
-            <button class="list-group-item list-group-item-action" id="phq-9" type="button">Do PHQ-9</button>
-            <button class="list-group-item list-group-item-action disabled-button" type="button" disabled>Do AUSDRISK</button>
+                <a href="/AUSDRISKDashboard.html" id="ausdrisk-link"
+                    class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start disabled">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <h5 class="mb-0">AUSDRISK Australian Type 2 Diabetes Risk Assessment Tool</h5>
+                        <span class="badge badge-primary ml-3" id="ausdrisk-num-responses"
+                            title="Number of responses">0</span>
+                    </div>
+                </a>
 
+            </div>
+
+            <div class="list-group mt-3 right">
+                <button class="list-group-item list-group-item-action" id="k10" type="button">Do K10</button>
+                <button class="list-group-item list-group-item-action" id="phq-9" type="button">Do PHQ-9</button>
+                <button class="list-group-item list-group-item-action disabled-button" type="button" disabled>Do
+                    AUSDRISK</button>
+            </div>
+            <div id="list-message"></div>
         </div>
-        <div id="list-message"></div>
-    </div>
 </body>
 
 </html>
