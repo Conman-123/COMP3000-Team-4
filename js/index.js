@@ -36,7 +36,26 @@ function processQuestionnaireResponses(responses) {
     $("#questionnaire-list-group-container").show();
 }
 
+// -- Globals --
+var globalClient;
+
 function initPage(client) {
     // Search for QuestionnaireResponses linked to this patient, returning just the array of bundle entries (rather than a bundle object)
     client.patient.request("QuestionnaireResponse", { flat: true }).then(processQuestionnaireResponses).catch(console.error);
+    globalClient = client;
 }
+
+// ---- TEMP Until Questionnaires can be created -----
+$(document).ready(function() {
+    $("#btn-do-k10").click(function() {
+       $.ajax({
+           url: "/testResources/k10-response-hapi-test.json",
+           success: function(data) {
+               data.subject.reference = "Patient/" + globalClient.patient.id;
+               postQuestionnaireResponse(globalClient, data).then(function(success) {
+                   if (success === true) window.location.reload();
+               });
+           }
+       });
+    });
+});
