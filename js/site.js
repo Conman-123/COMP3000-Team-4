@@ -120,8 +120,14 @@ $(document).ready(function () {
     });
     initPage(client);
 
-	// Use this line instead when using a SMART on FHIR auth server
-	//FHIR.oauth2.ready(function(client) {
-	//	initPage(client);
-	//}).catch(alert);
+    // Use this line instead when using a SMART on FHIR auth server
+    //FHIR.oauth2.ready().then(initPage).catch(console.error);
+
+    $("#k10").click(function () {
+    	window.location.href = "K10Questionnaire.html";
+    });
+
+    $("#phq-9").click(function () {
+    	window.location.href = "PHQ9Questionnaire.html";
+    });
 });

@@ -109,39 +109,13 @@ function calculateQuestionnaireScore(responseJson) {
 	return totalScore;
 }
 
-function display(data) {
-	//$("#whatever").text(data instanceof Error ? String(data) : JSON.stringify(data, null, 4));
-	var questions = getQuestionData(data.item);
-	console.log(questions);
-	displayQuestionnaire(questions, null, "questionnaire");
-}
-
 function oldInitPage() {
 	// Set comparison data
 	setNormativeScoreScale(5); // TEMPORARY!!!! TODO: CHANGE THIS
 
 	// Test displaying PHQ-9 questionnaire
-	$.ajax({
-		url: "/testResources/phq9-questionnaire-resource.json",
-		type: "GET",
-		success: function (data) {
-			display(data);
-		}
-	});
 
 	// Handle This Questionnaire Response (for now just use example)
-	$.ajax({
-		url: "/testResources/phq9-questionnaire-response.json",
-		type: "GET",
-		success: function (data) {
-			handleQuestionnaireResponse(data);
-			displayUserResponse(data, "/testResources/phq9-questionnaire-resource.json", "questionnaireResponse");
-
-		},
-		error: function(xhr, status, error) {
-			console.error(error);
-		}
-	});
 
 	$("#questionnaire").submit(function (event) {
 		$.ajax({
