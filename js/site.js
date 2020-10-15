@@ -112,7 +112,7 @@ function postQuestionnaireResponse(client, response) {
 $(document).ready(function () {
     // Use this block while testing with an open FHIR server
     const client = FHIR.client({
-        serverUrl: "http://hapi.fhir.org/baseR4",
+        serverUrl: "https://hapi.fhir.org/baseR4",
         tokenResponse: {
             patient: "1303022"
         }
