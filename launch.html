@@ -8,8 +8,11 @@
     <script>
         FHIR.oauth2.authorize({
             // client_id you get when registering with the auth server or EHR. Not required for open servers
-            "client_id": "<enter client id here>",
-            "scope": "patient/*.read"
+            "clientId": "temp",
+            // Request read and write access for QuestionnaireResponses about a patient
+            "scope": "patient/QuestionnaireResponse.*",
+            // Required when launching in an iFrame
+            "completeInTarget": true
         });
     </script>
 </body>
