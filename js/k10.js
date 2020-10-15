@@ -178,7 +178,6 @@ async function initPage(client) {
 }
 
 $(document).ready(function() {
-
 	$(".previous-versions-dropdown").on("click", ".dropdown-item", function() {
 		var responseAndScore = k10ResponsesAndScores[$(this).first().attr("data-index")];
 		handleQuestionnaireResponseAndScore(responseAndScore);
