@@ -47,15 +47,15 @@ function initPage(client) {
 
 // ---- TEMP Until Questionnaires can be created -----
 $(document).ready(function() {
-    $("#btn-do-k10").click(function() {
-       $.ajax({
-           url: "/testResources/k10-response-hapi-test.json",
-           success: function(data) {
-               data.subject.reference = "Patient/" + globalClient.patient.id;
-               postQuestionnaireResponse(globalClient, data).then(function(success) {
-                   if (success === true) window.location.reload();
-               });
-           }
-       });
-    });
+    //$("#k10").click(function() {
+    //   $.ajax({
+    //       url: "/testResources/k10-response-hapi-test.json",
+    //       success: function(data) {
+    //           data.subject.reference = "Patient/" + globalClient.patient.id;
+    //           postQuestionnaireResponse(globalClient, data).then(function(success) {
+    //               if (success === true) window.location.reload();
+    //           });
+    //       }
+    //   });
+    //});
 });
