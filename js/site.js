@@ -103,9 +103,10 @@ function handlePreviousScores(allOrderedResponses, currentResponse, maxPossibleS
 	});
 }
 
-function postQuestionnaireResponse(client, response) {
-    var resultResource = client.create(response).catch(console.error);
-    // Returns true on success, false otherwise
+async function postQuestionnaireResponse(client, response) {
+    var resultResource = await client.create(response).catch(console.error);
+	// Returns true on success, false otherwise
+	console.log("Result resource: " + resultResource);
     return resultResource?.resourceType === "QuestionnaireResponse";
 }
 

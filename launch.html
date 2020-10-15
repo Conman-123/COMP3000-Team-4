@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/fhirclient@2.3.1/build/fhir-client.min.js"
-        integrity="sha256-n7vfOuBrmsVxTrsfFjBXRi14WSsPzxjd/MqaFcvu85U=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient@2.3.10/build/fhir-client.min.js" integrity="sha256-AzchGbPx+iPbxvTn35C9cnSXWTvi4r3tI7USejZxSuU=" crossorigin="anonymous"></script>
 </head>
 <body>
     <script>
         FHIR.oauth2.authorize({
             // client_id you get when registering with the auth server or EHR. Not required for open servers
-            "clientId": "temp",
+            "clientId": "connect4",
             // Request read and write access for QuestionnaireResponses about a patient
-            "scope": "patient/QuestionnaireResponse.*",
+            "scope": "patient/QuestionnaireResponse.* launch offline_access",
             // Required when launching in an iFrame
             "completeInTarget": true
         });
