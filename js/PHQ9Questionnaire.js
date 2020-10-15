@@ -40,6 +40,7 @@ $(document).ready(function () {
             type: "GET",
             success: function (data) {
                 var responseJson = createResponseJson(data, response);
+                postQuestionnaireResponse(client, responseJson);
             }
         });
     });

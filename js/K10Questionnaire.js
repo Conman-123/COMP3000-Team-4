@@ -32,16 +32,15 @@ $(document).ready(function () {
     $("#questionnaire").submit(function (event) {
         event.preventDefault();
         response = $("#questionnaire").serializeArray();
-        console.log(response);
 
         $.ajax({
             url: "/testResources/k10-response.json",
             type: "GET",
             success: function (data) {
                 var responseJson = createResponseJson(data, response);
+                console.log(responseJson);
+                postQuestionnaireResponse(client, responseJson);
             }
         });
-
-
     });
 });
