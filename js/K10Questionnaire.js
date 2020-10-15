@@ -4,21 +4,25 @@ function createResponseJson(template, reponse) {
         responseJson.item[i].answer[0].valueCoding.code = reponse[i].value;
     }
 
+    // Add authored date
+    responseJson.authored = moment().format(); // This should be the correct date time format for FHIR
+    
+    // Add patient id
+    responseJson.subject = responseJson.subject || {};
+    responseJson.subject.reference = "Patient/" + globalClient.patient.id;
+    responseJson.subject.type = "Patient";
+    
     return responseJson;
 }
 
-$(document).ready(function () {
-    // Use this block while testing with an open FHIR server
-    const client = FHIR.client({
-        serverUrl: "http://hapi.fhir.org/baseR4",
-        tokenResponse: {
-            patient: "1303022"
-        }
-    });
-    initPage(client);
+// -- Globals --
+var globalClient;
 
-    // Use this line instead when using a SMART on FHIR auth server
-    //FHIR.oauth2.ready().then(initPage).catch(console.error);    
+function initPage(client) {
+    globalClient = client;
+}
+
+$(document).ready(function () { 
 
     $.ajax({
         url: "/resources/K10_kessler_psychological_distress_scale.json",
@@ -39,7 +43,10 @@ $(document).ready(function () {
             success: function (data) {
                 var responseJson = createResponseJson(data, response);
                 console.log(responseJson);
-                postQuestionnaireResponse(client, responseJson);
+                postQuestionnaireResponse(globalClient, responseJson).then(function (success) {
+                   if (success === true) window.location = "/index.html";
+                   else (alert("An error occurred submitting this questionnaire response."));
+               });
             }
         });
     });

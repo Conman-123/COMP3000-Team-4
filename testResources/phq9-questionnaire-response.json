@@ -1,20 +1,12 @@
 {
     "resourceType" : "QuestionnaireResponse",
-    "questionnaire" : "http://hl7.org/fhir/Questionnaire/PHQ_9_Patient_Health_Questionnaire_9",
+    "questionnaire" : "https://connect4.uqcloud.net/resources/PHQ_9_Patient_Health_Questionnaire_9.json",
     "status" : "completed",
     "subject" : { 
-        "reference": "http://hl7.org/fhir/Patient/1",
+        "reference": "",
         "type": "Patient"
      },
-    "authored" : "2018-02-19T14:15:00+10:00",
-    "author" : { 
-        "reference": "http://hl7.org/fhir/Practitioner/example",
-        "type": "Practitioner"
-     },
-    "source" : { 
-        "reference": "http://hl7.org/fhir/Patient/1",
-        "type": "Patient"
-    },
+    "authored" : "",
     "item": [
         {
             "linkId": "1",
