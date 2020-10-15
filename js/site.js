@@ -129,4 +129,5 @@ $(document).ready(function () {
     $("#phq-9").click(function () {
     	window.location.href = "PHQ9Questionnaire.html";
     });
+
 });
