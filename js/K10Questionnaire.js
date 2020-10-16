@@ -1,4 +1,9 @@
 function createResponseJson(template, reponse) {
+    if (response.length < 10) {
+        alert("Please complete the questionnaire");
+        return -1;
+    }
+
     var responseJson = template;
     for (var i = 0; i < 10; i++) {
         responseJson.item[i].answer[0].valueCoding.code = reponse[i].value;
@@ -42,6 +47,10 @@ $(document).ready(function () {
             type: "GET",
             success: function (data) {
                 var responseJson = createResponseJson(data, response);
+                if (responseJson == -1) {
+                    return ;
+                }
+
                 console.log(responseJson);
                 postQuestionnaireResponse(globalClient, responseJson).then(function (success) {
                    if (success === true) window.location = "/index.html";
