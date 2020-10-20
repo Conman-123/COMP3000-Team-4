@@ -387,6 +387,16 @@ h3 {
 	border-bottom-left-radius: 0px;
 }
 
+.right button {
+	background-color: #1c5c77;
+    color: white;
+}
+
+.right button:hover {
+	background-color: #2298c9;
+    color: white;
+}
+
 .disabled-button {
 	background-color: #eee !important;
 }
