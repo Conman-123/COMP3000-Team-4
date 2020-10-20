@@ -352,6 +352,26 @@ h3 {
 	font-weight: bold;
 }
 
+.back-button {
+	background-color: #1c5c77;
+	border: 1px solid #1c5c77;
+	border-radius: 0;
+	font-weight: bold;
+	width: 157.23px;
+	height: 38px;
+	text-align: center;
+	color: white;
+}
+
+a.back-button:hover {
+	background-color: #2298c9;
+	color: white;
+}
+
+button.submit-button:hover {
+	background-color: #2298c9;
+}
+
 #questionnaireResponse {
 	margin-bottom: 5%
 }

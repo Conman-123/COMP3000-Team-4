@@ -234,10 +234,16 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 	}
 
 	if (responseJson == null) {
-			$(`#${formDisplay}`).append(`<div class="row">
-		<button type="submit" class="btn btn-primary mt-4 px-5 submit-button" form="questionnaire" value="Submit">Submit</button>
-		</div>
-		`);
+
+			$(`#${formDisplay}`).append(`<div class="row" id="form-controls"></div>`);
+
+			$(`#form-controls`).append(`<div class="col-2">
+				<a class="nav-link back-button mt-4" href="/index.html">Go Back</a>
+			</div>`);
+
+			$(`#form-controls`).append(`<div class="col-2">
+				<button type="submit" class="btn btn-primary mt-4 px-5 submit-button" form="questionnaire" value="Submit">Submit</button>
+			</div>`);
 	}
 }
 
