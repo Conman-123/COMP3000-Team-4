@@ -238,7 +238,7 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 			$(`#${formDisplay}`).append(`<div class="row" id="form-controls"></div>`);
 
 			$(`#form-controls`).append(`<div class="col-2">
-				<a class="nav-link back-button mt-4" href="/index.html">Go Back</a>
+				<a class="nav-link back-button mt-4" href="/index.html">Cancel</a>
 			</div>`);
 
 			$(`#form-controls`).append(`<div class="col-2">
