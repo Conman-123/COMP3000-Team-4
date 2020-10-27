@@ -214,7 +214,7 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 					<label>
 						<input class="form-check-input" id="${id}" name="${name}" type="radio" value="${value}" ${isChecked} ${readOnly}>
 						<span>
-							<img src="/img/check.png">
+							<img src="img/check.png">
 						</span>
 					</label>
 				</div>
@@ -238,7 +238,7 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 			$(`#${formDisplay}`).append(`<div class="row" id="form-controls"></div>`);
 
 			$(`#form-controls`).append(`<div class="col-2">
-				<a class="nav-link back-button mt-4" href="/index.html">Cancel</a>
+				<a class="nav-link back-button mt-4" href="index.html">Cancel</a>
 			</div>`);
 
 			$(`#form-controls`).append(`<div class="col-2">
