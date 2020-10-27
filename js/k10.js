@@ -177,8 +177,9 @@ async function initPage(client) {
 	handlePreviousScores(k10ResponsesAndScores, mostRecentResponseAndScore, 50);
 	
 	// Set comparison data
-	setNormativeScoreScale(14); // TEMPORARY!!!! TODO: CHANGE THIS
-
+	setNormativeScoreScale(14); // IMPORTANT! This is not real data, it is just a placeholder!
+	/* This is an unfinished feature. The goal is to use patient information such as age and gender
+	to show a relevant normative score ('hardcoded' from research). */
 }
 
 $(document).ready(function() {
