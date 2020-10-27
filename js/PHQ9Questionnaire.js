@@ -25,6 +25,7 @@ function initPage(client) {
 
 $(document).ready(function () {
 
+    //ajax request to get FHIR questionnaire json and display questionnaire
     $.ajax({
         url: "/resources/PHQ_9_Patient_Health_Questionnaire_9.json",
         type: "GET",
@@ -35,6 +36,7 @@ $(document).ready(function () {
         }
     });
 
+    //questionnaire submit event handler
     $("#questionnaire").submit(function (event) {
         event.preventDefault();
         response = $("#questionnaire").serializeArray();

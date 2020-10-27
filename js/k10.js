@@ -1,6 +1,7 @@
 const LOINC_FHIR_API_URL = "https://fhir.loinc.org";
 // The LOINC answers don't keep track of scores. Keep track of them here
 
+//Assign LOINC Code answer to the corresponding score
 const LOINC_ANSWER_CODE_SCORES = {
 	"LA6297-1": 1,
 	"LA14732-4": 2,
@@ -10,6 +11,7 @@ const LOINC_ANSWER_CODE_SCORES = {
 }
 
 function getk10WordScore(score) {
+	//take a k10 score and display the result in word
 	if (score < 20) {
 		return "good";
 	} else if (score < 25) {
@@ -82,6 +84,7 @@ function handleQuestionnaireResponseAndScore(responseAndScore) {
 }
 
 function calculateQuestionnaireScore(responseJson) {
+	//calculate the score of the response
 	var scores = [];
 	// Get scores for each answer
 	for (var i = 0; i < responseJson.item.length; i++) {
@@ -98,6 +101,7 @@ function calculateQuestionnaireScore(responseJson) {
 }
 
 function display(data) {
+	//display questionnaire
 	var questions = getQuestionData(data.item);
 	displayQuestionnaire(questions, null, "questionnaire");
 }
