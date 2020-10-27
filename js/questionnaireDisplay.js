@@ -41,6 +41,10 @@ function questionInput(type, value, name) {
 }
 
 function getQuestionData(data) {
+	//get questions from the questionnaire FHIR json
+	//it is an depth-frst search algorithm
+	//the functions get the questions and push them into an array
+	//TODO: Expand the function to correctly works with nested questions and sections
 
 	var questions = [];
 
@@ -71,6 +75,11 @@ function getQuestionData(data) {
 }
 
 function getAnswerData(data) {
+	//get patient answers from an answer FHIR json
+	//it is an depth-frst search algorithm
+	//the functions get the answers and push them into an array
+	//TODO: Expand the function to correctly works with nested responses and sections
+
 	var answers = [];
 
 	stack = data.slice().reverse(); // Slice so it creates a new array and reverses that instead of modifying the original array (which breaks stuff)
@@ -95,9 +104,12 @@ function getAnswerData(data) {
 	return answers;
 }
 
+//global question prefix
 var questionPrefix = 1;
 
 function getPrefix(question) {
+	//generate a question prefix based on quesiton ID if the prefix is missing in FHIR resource
+	//question: an array containning information about the question
 	var prefix = question[1];
 	var group = 0;
 
@@ -115,32 +127,47 @@ function getPrefix(question) {
 }
 
 function getDisplayText(question) {
+	//get display text of the question from the FHIR resource
+	//question: an array containning information about the question
 	return question[2];
 }
 
 function getAnswers(question) {
+	//get possinle answers of the question from the FHIR resource
+	//question: an array containning information about the question
 	return question[4];
 }
 
 function getValue(answer) {
+	//get the code of the answer of the question from the FHIR resource
+	//answer: an answer object containning information about the answer
 	return answer.valueCoding.code;
 }
 
 function createAnswerId(answer, name) {
+	//create an id for the answer based on it's display and name
+	//answer: an answer object containning information about the answer
+	//name: the name of the answer
 	var re = /(?:\w+)/g;
 	var id = answer.match(re)[0];
 	return `${name}-${id}`;
 }
 
 function createAnswerName(question) {
+	//create name for answers associated with the question
+	//question: an array containning information about the question
 	return `question-${question[0]}`
 }
 
 function getAnswerCode(answer) {
+	//get the clinical code of the answer
+	//answer: an answer object containning information about the answer
 	return answer.valueCoding.code;
 }
 
 function getCheckedAnswer(response) {
+	//get user answers
+	//response: a FHIR questionnaire response object
 	if (response != undefined) {
 		var answerCode = getAnswerCode(response[2][0]);
 		return answerCode;
@@ -149,6 +176,9 @@ function getCheckedAnswer(response) {
 }
 
 function createAnswerLabel(question, location) {
+	//create the display label for the answer
+	//question: question object
+	//location: id of the parent element
 	var numberOfAnswer = question[question.length - 1].length;
 	for (var i = 0; i < numberOfAnswer; i++) {
 		var label = question[question.length - 1][i].valueCoding.display;
@@ -160,7 +190,15 @@ function createAnswerLabel(question, location) {
 }
 
 function displayQuestionnaire(questions, responseJson, formDisplay) {
+	//display questionnaire in the website as a form
+	//question: question object
+	//responseJson: user questionnaire response object, if it is present, the function will fill the questionnaire
+	//				with the user response, and make the form readonly
+	//formDisplay: id of the parent element to insert the form as children
+
 	var group = 1;
+
+	//create header and column labels
 	$(`#${formDisplay}`).html("");
 	$(`#${formDisplay}`).append(`
 			<div class="row questionnaire-row question-label">
@@ -175,8 +213,10 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 
 	createAnswerLabel(questions[0], "col-label");
 
+	//check whether the form is readonly
 	var readOnly = (responseJson == null) ? "" : "disabled";
 
+	//create questions and put them into the form
 	for (var i = 0; i < questions.length; i++) {
 
 		if (group != questions[i][0].split(".")[0]) {
@@ -233,6 +273,7 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 		$(`#${formDisplay}`).append(questionContainer);
 	}
 
+	//create form control buttons if the form is not readonly
 	if (responseJson == null) {
 
 			$(`#${formDisplay}`).append(`<div class="row" id="form-controls"></div>`);
@@ -248,7 +289,10 @@ function displayQuestionnaire(questions, responseJson, formDisplay) {
 }
 
 function displayUserResponse(responseJson, questionnaire, display) {
-
+	//display user response
+	//responseJson: user response object
+	//questionnaire: path to questionnaire FHIR json file
+	//display: the id of the parent element to put the response in
 	$.ajax({
 		url: questionnaire,
 		type: "GET",
