@@ -109,28 +109,6 @@ function calculateQuestionnaireScore(responseJson) {
 	return totalScore;
 }
 
-function oldInitPage() {
-	// Set comparison data
-	setNormativeScoreScale(5); // TEMPORARY!!!! TODO: CHANGE THIS
-
-	// Test displaying PHQ-9 questionnaire
-
-	// Handle This Questionnaire Response (for now just use example)
-
-	$("#questionnaire").submit(function (event) {
-		$.ajax({
-			type: "POST",
-			url: "serverUrl",
-			data: formData,
-			success: function () { },
-			dataType: "json",
-			contentType: "application/json"
-		});
-
-		event.preventDefault();
-	});
-}
-
 // -- GLOBALS --
 var phq9Responses;
 var phq9ResponsesAndScores = [];
@@ -202,7 +180,9 @@ async function initPage(client) {
 	handlePreviousScores(phq9ResponsesAndScores, mostRecentResponseAndScore, 27);
 	
 	// Set comparison data
-	setNormativeScoreScale(5); // TEMPORARY!!!! TODO: CHANGE THIS
+	setNormativeScoreScale(5); // IMPORTANT! This is not real data, it is just a placeholder!
+	/* This is an unfinished feature. The goal is to use patient information such as age and gender
+	to show a relevant normative score ('hardcoded' from research). */
 }
 
 $(document).ready(function() {
